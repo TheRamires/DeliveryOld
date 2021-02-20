@@ -41,7 +41,7 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
         binding.setFragment(this);
         View view=binding.getRoot();
 
-        initializeMap();
+        initializeMap(this);
         initMapTrue.observe(getViewLifecycleOwner(), new Observer<SupportMapFragment>() {
             @Override
             public void onChanged(SupportMapFragment supportMapFragment) {
@@ -51,10 +51,10 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
 
         return view;
     }
-    private void initializeMap() {
+    private void initializeMap(OnMapReadyCallback onMapReadyCallback) {
         if (mMap == null) {
             SupportMapFragment mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-            mapFrag.getMapAsync(this);
+            mapFrag.getMapAsync(onMapReadyCallback);
             initMapTrue.postValue(mapFrag);
 
         }

@@ -10,10 +10,10 @@ import com.example.delivery.menu.FragmentSection;
 import com.example.delivery.restaurants.FragmentMap;
 import com.example.delivery.restaurants.FragmentNearby;
 
-public class PagerAdapterRestaurans extends FragmentStateAdapter {
+public class PagerAdapterRestaurants extends FragmentStateAdapter {
     private int counter = 0;
 
-    public PagerAdapterRestaurans(@NonNull FragmentActivity fragmentActivity) {
+    public PagerAdapterRestaurants(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 

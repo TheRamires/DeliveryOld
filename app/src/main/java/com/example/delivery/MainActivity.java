@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -12,11 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.delivery.databinding.ActivityMainBinding;
+import com.example.delivery.viewModels.RestaurantsViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
-    NavHostFragment navHostFragment;
-    NavController navController;
+    private ActivityMainBinding binding;
+    private NavHostFragment navHostFragment;
+    private NavController navController;
+    private RestaurantsViewModel restaurantsViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         navController=navHostFragment.getNavController();
         setSupportActionBar(binding.toolbarUp);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        // View Models
+        restaurantsViewModel = new ViewModelProvider(this).get(RestaurantsViewModel.class);
     }
 
     @Override

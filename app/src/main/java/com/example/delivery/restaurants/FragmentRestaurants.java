@@ -16,8 +16,7 @@ import android.widget.TextView;
 
 import com.example.delivery.R;
 import com.example.delivery.databinding.FragmentRestaurantsBinding;
-import com.example.delivery.pager_Instruments.PagerAdapterMenu;
-import com.example.delivery.pager_Instruments.PagerAdapterRestaurans;
+import com.example.delivery.pager_Instruments.PagerAdapterRestaurants;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -36,7 +35,7 @@ public class FragmentRestaurants extends Fragment {
 
         TabLayout tabLayout=binding.tabs;
         ViewPager2 viewPager=binding.pager;
-        FragmentStateAdapter adapter=new PagerAdapterRestaurans(requireActivity());
+        FragmentStateAdapter adapter=new PagerAdapterRestaurants(requireActivity());
         viewPager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
