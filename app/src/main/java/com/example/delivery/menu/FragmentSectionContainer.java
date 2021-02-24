@@ -17,12 +17,12 @@ import android.widget.Button;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
-import com.example.delivery.databinding.FragmentMenuSectionsBinding;
+import com.example.delivery.databinding.FragmentSectionsContainerBinding;
 import com.example.delivery.pager_Instruments.PagerAdapterMenu;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class FragmentMenuSections extends Fragment {
+public class FragmentSectionContainer extends Fragment {
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
@@ -33,7 +33,7 @@ public class FragmentMenuSections extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         titleList=getResources().getStringArray(R.array.title);
-        FragmentMenuSectionsBinding binding=FragmentMenuSectionsBinding.inflate(inflater);
+        FragmentSectionsContainerBinding binding=FragmentSectionsContainerBinding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);

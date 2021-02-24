@@ -2,19 +2,20 @@ package com.example.delivery.data;
 
 public class Entity {
     private String img;
+    private String brand;
     private String name;
     private String description;
     private String price;
     private String param1;
     private String param2;
 
-    public Entity(String img,String name,String description,String price,String param1, String param2 ){
+    public Entity(String brand,String img,String name,String description,String param1, String price){
         this.img=img;
+        this.brand=brand;
         this.name=name;
         this.description=description;
         this.price=price;
         this.param1=param1;
-        this.param2=param2;
 
     }
 
@@ -23,6 +24,12 @@ public class Entity {
     }
     public String getImg(){
         return img;
+    }
+    public void setBrand(String brand) {
+        this.brand=brand;
+    }
+    public String getBrand(){
+        return brand;
     }
     public void setName(String name){
         this.name=name;

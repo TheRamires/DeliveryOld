@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.delivery.adapters.ImageBindingAdapter;
+import com.example.delivery.menu.adapters.ImageBindingAdapter;
 import com.example.delivery.databinding.ActivityMainBinding;
 import com.example.delivery.mapspoint.MapspointViewModel;
 import com.example.delivery.menu.MenuViewModel;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 Loger.log("cart is clicked");
                 break;
             case R.id.menu:
-                navController.navigate(R.id.fragmentMenu);
+                navController.navigate(R.id.fragmentMenuList);
                 Loger.log("menu is clicked");
                 break;
             case R.id.favorites:

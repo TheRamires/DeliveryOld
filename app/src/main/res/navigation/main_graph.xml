@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentMenu">
+    app:startDestination="@id/fragmentMenuList">
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.delivery.MainActivity"
@@ -21,21 +21,29 @@
         android:name="com.example.delivery.mapspoint.FragmentMapsPoint"
         android:label="FragmentRestaurants" />
     <fragment
-        android:id="@+id/fragmentMenu"
+        android:id="@+id/fragmentMenuList"
         android:name="com.example.delivery.menu.FragmentMenuList"
         android:label="fragment_conteiner_menu1"
         tools:layout="@layout/fragment_menu_list" >
         <action
             android:id="@+id/action_conteinerMenu1_to_conteinerSections22"
-            app:destination="@id/fragmentMenuSections" />
+            app:destination="@id/fragmentSectionContainer" />
+        <action
+            android:id="@+id/action_fragmentMenuList_to_fragmentPosition"
+            app:destination="@id/fragmentPosition" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentMenuSections"
-        android:name="com.example.delivery.menu.FragmentMenuSections"
+        android:id="@+id/fragmentSectionContainer"
+        android:name="com.example.delivery.menu.FragmentSectionContainer"
         android:label="fragment_conteiner_sections2"
-        tools:layout="@layout/fragment_menu_sections" />
+        tools:layout="@layout/fragment_sections_container" />
     <fragment
         android:id="@+id/fragmentProfile"
         android:name="com.example.delivery.profile.FragmentProfile"
         android:label="FragmentProfile" />
+    <fragment
+        android:id="@+id/fragmentPosition"
+        android:name="com.example.delivery.menu.FragmentPosition"
+        android:label="fragment_position"
+        tools:layout="@layout/fragment_position" />
 </navigation>

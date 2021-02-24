@@ -4,15 +4,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +18,14 @@ import android.widget.Button;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
-import com.example.delivery.adapters.Recycler_View_Adapter;
 import com.example.delivery.data.Entity;
 import com.example.delivery.databinding.FragmentMenuListBinding;
-import com.google.android.material.tabs.TabLayout;
+import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
+import com.example.delivery.menu.adapters.RecyclerAdapterList;
 
 import java.util.List;
 
 public class FragmentMenuList extends Fragment {
-    private ViewPager2 viewPager;
-    private TabLayout tabLayout;
-    private FragmentStateAdapter pagerAdapter;
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
@@ -60,11 +54,38 @@ public class FragmentMenuList extends Fragment {
     }
     private void setList (RecyclerView recyclerView, List<Entity> list){
 
-        RecyclerView.Adapter adapter=new Recycler_View_Adapter(list);
+        RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        //RecyclerView Decor------------------------------------
+        RecyclerSectionItemDecoration sectionItemDecoration =
+                new RecyclerSectionItemDecoration(getResources()
+                        .getDimensionPixelSize(R.dimen.recycler_section_header_height),
+                        true, // true for sticky, false for not
+                        new RecyclerSectionItemDecoration.SectionCallback() {
+                            @Override
+                            public boolean isSection(int position) {
+                                return position == 0
+                                        || list.get(position)
+                                        //.getLastName()
+                                        .getBrand()
+                                        .charAt(0) != list.get(position - 1)
+                                        //.getLastName()
+                                        .getBrand()
+                                        .charAt(0);
+                            }
+
+                            @Override
+                            public CharSequence getSectionHeader(int position) {
+                                return list.get(position)
+                                        //.getLastName()
+                                        .getBrand();
+                                //.subSequence(0, 3); //.subSequence(0, 1);   //•установление заголовка
+                            }
+                        });
+        recyclerView.addItemDecoration(sectionItemDecoration);
     }
 
     //---------------------------------------Dinamic view--------------------------------------
@@ -79,7 +100,7 @@ public class FragmentMenuList extends Fragment {
             @Override
             public void onClick(View v) {
                 getNavOptions();
-                navController.navigate(R.id.fragmentMenuSections,null,getNavOptions());
+                navController.navigate(R.id.fragmentSectionContainer,null,getNavOptions());
                 Loger.log("Dinamic Text View is Cliked");
             }
         });

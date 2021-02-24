@@ -18,9 +18,9 @@ public class PagerAdapterMenu extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new FragmentSection2();
-            case 1:
                 return new FragmentSection1();
+            case 1:
+                return new FragmentSection2();
 
         }
         return null;

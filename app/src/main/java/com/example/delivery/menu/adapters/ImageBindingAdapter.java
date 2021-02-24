@@ -1,7 +1,8 @@
-package com.example.delivery.adapters;
+package com.example.delivery.menu.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -15,10 +16,13 @@ public class ImageBindingAdapter {
     @BindingAdapter({"bind:imageUrl"})
     public static void setImageUrl(ImageView imageView, String url) {
         Context context=imageView.getContext();
-        int imageRecource=context.getResources().getIdentifier(url,  null,context.getPackageName());
+        Loger.log("imageBinding "+url);
+        int imageRecource=context.getResources().getIdentifier(url,  "drawable",context.getPackageName());
 
-        Loger.log("ids");
         Drawable drawable=context.getResources().getDrawable((imageRecource));
+        imageView.setImageDrawable(drawable);
+        Loger.log("imageBinding "+drawable);
+
 
     }
 }

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="fragment"
+            type="com.example.delivery.menu.FragmentSection1" />
+    </data>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,5 +12,11 @@
     tools:context=".menu.FragmentSection1"
     android:background="#253695">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler"/>
 
 </FrameLayout>
+</layout>
