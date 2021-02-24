@@ -64,7 +64,7 @@ public class FragmentMenuSections extends Fragment {
     private void addDinamicView(){
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_up);
         title = new Button(getActivity());
-        title.setText("Menu");
+        title.setText(getResources().getString(R.string.menu));
         //title.setBackgroundColor(Color.parseColor("#FF6200EE"));
         title.setClickable(true);
         title.setTextSize(15);

@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.delivery.menu.FragmentIngredients;
-import com.example.delivery.menu.FragmentSection;
-import com.example.delivery.restaurants.FragmentMap;
-import com.example.delivery.restaurants.FragmentNearby;
+import com.example.delivery.mapspoint.FragmentMap;
+import com.example.delivery.mapspoint.FragmentNearby;
 
 public class PagerAdapterRestaurants extends FragmentStateAdapter {
     private int counter = 0;

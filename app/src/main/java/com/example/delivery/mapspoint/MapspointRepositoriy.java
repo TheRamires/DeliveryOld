@@ -1,65 +1,36 @@
-package com.example.delivery.restaurants;
+package com.example.delivery.mapspoint;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
 
 import com.example.delivery.Loger;
-import com.example.delivery.R;
-import com.example.delivery.databinding.FragmentMapBinding;
+import com.example.delivery.data.Geopoint;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.concurrent.Callable;
+public class MapspointRepositoriy implements MapspointRepo {
+    private Geopoint geopoint;
+    private GoogleMap mMap;
 
-import io.reactivex.Observable;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
-public class FragmentMap extends Fragment implements OnMapReadyCallback {
-    GoogleMap mMap;
-    MutableLiveData<SupportMapFragment> initMapTrue=new MutableLiveData<>();
+    public MapspointRepositoriy(Context context){
+        geopoint=new Geopoint(context);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        FragmentMapBinding binding=FragmentMapBinding.inflate(inflater);
-        binding.setFragment(this);
-        View view=binding.getRoot();
-
-        initializeMap(this);
-        initMapTrue.observe(getViewLifecycleOwner(), new Observer<SupportMapFragment>() {
-            @Override
-            public void onChanged(SupportMapFragment supportMapFragment) {
-                toMap();
-            }
-        });
-
-        return view;
+    public void geopoint() {
+        geopoint.daterminate();
     }
-    private void initializeMap(OnMapReadyCallback onMapReadyCallback) {
-        if (mMap == null) {
-            SupportMapFragment mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-            mapFrag.getMapAsync(onMapReadyCallback);
-            initMapTrue.postValue(mapFrag);
 
-        }
+    @Override
+    public void googlemapsInit(GoogleMap mMap) {
+        init(mMap);
+        toMap(mMap);
     }
-    private void init() {
+
+    private void init(GoogleMap mMap) {
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -85,7 +56,7 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public void toMap() {  //ex button
+    private void toMap(GoogleMap mMap) {  //ex button
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL  );
         if (mMap!=null) {
             Loger.log(mMap.toString());
@@ -123,12 +94,5 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
                 .anchor(0.5f,1)
                 .flat(true)
                 .title("Рис ЮМР"));
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        //setUpMap();
-
     }
 }

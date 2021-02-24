@@ -8,6 +8,16 @@ public class Entity {
     private String param1;
     private String param2;
 
+    public Entity(String img,String name,String description,String price,String param1, String param2 ){
+        this.img=img;
+        this.name=name;
+        this.description=description;
+        this.price=price;
+        this.param1=param1;
+        this.param2=param2;
+
+    }
+
     public void setImg(String img){
         this.img=img;
     }

@@ -3,13 +3,14 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.delivery.FragmentProfile" />
+            type="com.example.delivery.profile.FragmentProfile" />
     </data>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentProfile"
+    tools:context=".profile.FragmentProfile"
     android:background="#9C27B0">
 
 </FrameLayout>

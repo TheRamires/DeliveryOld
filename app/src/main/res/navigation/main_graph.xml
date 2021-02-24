@@ -10,20 +10,16 @@
         android:label="MainActivity" />
     <fragment
         android:id="@+id/fragmentFavorites"
-        android:name="com.example.delivery.FragmentFavorites"
+        android:name="com.example.delivery.favorites.FragmentFavorites"
         android:label="FragmentFavorites" />
     <fragment
         android:id="@+id/fragmentOrders"
-        android:name="com.example.delivery.FragmentOrders"
+        android:name="com.example.delivery.orders.FragmentOrders"
         android:label="FragmentOrders" />
     <fragment
-        android:id="@+id/fragmentRestaurants"
-        android:name="com.example.delivery.restaurants.FragmentRestaurants"
+        android:id="@+id/fragmentMapsPoint"
+        android:name="com.example.delivery.mapspoint.FragmentMapsPoint"
         android:label="FragmentRestaurants" />
-    <fragment
-        android:id="@+id/fragmentProfile"
-        android:name="com.example.delivery.FragmentProfile"
-        android:label="FragmentProfile" />
     <fragment
         android:id="@+id/fragmentMenu"
         android:name="com.example.delivery.menu.FragmentMenuList"
@@ -38,4 +34,8 @@
         android:name="com.example.delivery.menu.FragmentMenuSections"
         android:label="fragment_conteiner_sections2"
         tools:layout="@layout/fragment_menu_sections" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.example.delivery.profile.FragmentProfile"
+        android:label="FragmentProfile" />
 </navigation>

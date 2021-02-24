@@ -1,4 +1,4 @@
-package com.example.delivery.restaurants;
+package com.example.delivery.menu;
 
 import android.os.Bundle;
 
@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.delivery.R;
-public class FragmentNearby extends Fragment {
+
+public class FragmentSection2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nearby, container, false);
+        return inflater.inflate(R.layout.fragment_section2, container, false);
     }
 }

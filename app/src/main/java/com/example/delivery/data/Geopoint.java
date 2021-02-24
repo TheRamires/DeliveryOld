@@ -11,15 +11,22 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.databinding.ObservableField;
 
-import com.example.delivery.R;
+import com.example.delivery.Loger;
 
 public class Geopoint {
     private LocationManager locationManager;
     public Context context;
     private String context2 = Context.LOCATION_SERVICE;
 
+    public Geopoint (Context context){
+        this.context=context;
+
+    }
+
     public void daterminate() {
+
         locationManager = (LocationManager) context.getSystemService(context2);
         LocationListener locationListener = new MyLocationListener();
 
@@ -31,8 +38,10 @@ public class Geopoint {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Toast.makeText(context, "no granted", Toast.LENGTH_SHORT).show();
             return;
         }
+
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000*10, 100000, locationListener);
     }
 
@@ -42,7 +51,10 @@ public class Geopoint {
         public void onLocationChanged(Location loc) {
             double lat=loc.getLatitude();
             double lon=loc.getLongitude();
-                Toast.makeText(context, "lat "+lat+", lon"+lon, Toast.LENGTH_SHORT).show();
+            if(loc!=null) {
+                Loger.log("GEOPOINT" + "lat " + lat + ", lon" + lon);
+                Toast.makeText(context, "GEOPOINT" + "lat " + lat + ", lon" + lon, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override

@@ -1,4 +1,4 @@
-package com.example.delivery;
+package com.example.delivery.profile;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.delivery.R;
 import com.example.delivery.databinding.FragmentProfileBinding;
 
 public class FragmentProfile extends Fragment {
@@ -19,8 +20,7 @@ public class FragmentProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentProfileBinding binding=FragmentProfileBinding.inflate(inflater);
-        binding.setFragment(this);
+        FragmentProfileBinding binding= FragmentProfileBinding.inflate(inflater);
         View view=binding.getRoot();
         addDinamicView();
         return view;
@@ -30,7 +30,7 @@ public class FragmentProfile extends Fragment {
         title=new TextView(getActivity());
         title.setTextSize(20);
         title.setTextColor(Color.BLACK);
-        title.setText("Profile");
+        title.setText(getResources().getString(R.string.profile));
         toolbar.addView(title);
     }
 

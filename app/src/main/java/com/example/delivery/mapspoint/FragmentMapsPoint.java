@@ -1,4 +1,4 @@
-package com.example.delivery.restaurants;
+package com.example.delivery.mapspoint;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.delivery.R;
-import com.example.delivery.databinding.FragmentRestaurantsBinding;
+import com.example.delivery.databinding.FragmentMapspointBinding;
 import com.example.delivery.pager_Instruments.PagerAdapterRestaurants;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class FragmentRestaurants extends Fragment {
+public class FragmentMapsPoint extends Fragment {
     private Toolbar toolbar;
     private TextView title;
     private String [] titleList2;
@@ -28,7 +28,7 @@ public class FragmentRestaurants extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         titleList2=getResources().getStringArray(R.array.title2);
-        FragmentRestaurantsBinding binding=FragmentRestaurantsBinding.inflate(inflater);
+        FragmentMapspointBinding binding=FragmentMapspointBinding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
         addDinamicView();
@@ -51,7 +51,7 @@ public class FragmentRestaurants extends Fragment {
         title=new TextView(getActivity());
         title.setTextSize(20);
         title.setTextColor(Color.BLACK);
-        title.setText("Restaurants");
+        title.setText(getResources().getString(R.string.mapspoint));
         toolbar.addView(title);
     }
 

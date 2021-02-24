@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.delivery.menu.FragmentIngredients;
-import com.example.delivery.menu.FragmentSection;
+import com.example.delivery.menu.FragmentSection2;
+import com.example.delivery.menu.FragmentSection1;
 
 public class PagerAdapterMenu extends FragmentStateAdapter {
     private int counter = 0;
@@ -18,9 +18,9 @@ public class PagerAdapterMenu extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new FragmentIngredients();
+                return new FragmentSection2();
             case 1:
-                return new FragmentSection();
+                return new FragmentSection1();
 
         }
         return null;

@@ -12,25 +12,44 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.delivery.adapters.ImageBindingAdapter;
 import com.example.delivery.databinding.ActivityMainBinding;
-import com.example.delivery.viewModels.RestaurantsViewModel;
+import com.example.delivery.mapspoint.MapspointViewModel;
+import com.example.delivery.menu.MenuViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavHostFragment navHostFragment;
     private NavController navController;
-    private RestaurantsViewModel restaurantsViewModel;
+    private MapspointViewModel mapspointViewModel;
+    private MenuViewModel menuViewModel;
+    private Permission permission;
+    private ImageBindingAdapter imageBindingAdapter;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permission.permissionsResult(requestCode,grantResults);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main);
+
         navHostFragment=(NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController=navHostFragment.getNavController();
         setSupportActionBar(binding.toolbarUp);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        // View Models
-        restaurantsViewModel = new ViewModelProvider(this).get(RestaurantsViewModel.class);
+        //====================================ViewModels==================================
+        mapspointViewModel = new ViewModelProvider(this).get(MapspointViewModel.class);
+        menuViewModel=new ViewModelProvider(this).get(MenuViewModel.class);
+
+        //====================================Permisions==================================
+        permission= new Permission(mapspointViewModel, this, this);
+        /* ...and GeoPoint  */
+        permission.requestPerm();
+
     }
 
     @Override
@@ -52,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Loger.log("orders is clicked");
                 break;
             case R.id.restaurants:
-                navController.navigate(R.id.fragmentRestaurants);
+                navController.navigate(R.id.fragmentMapsPoint);
                 Loger.log("restaurants is clicked");
                 break;
             case R.id.profile:

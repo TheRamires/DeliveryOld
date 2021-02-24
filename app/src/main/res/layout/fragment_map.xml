@@ -3,13 +3,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.delivery.restaurants.FragmentMap" />
+            type="com.example.delivery.mapspoint.FragmentMap" />
     </data>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurants.FragmentMap">
+    tools:context=".mapspoint.FragmentMap">
 
     <fragment
         android:id="@+id/map"

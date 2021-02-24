@@ -4,13 +4,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.delivery.restaurants.FragmentRestaurants" />
+            type="com.example.delivery.mapspoint.FragmentMapsPoint" />
     </data>
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurants.FragmentRestaurants"
+    tools:context=".mapspoint.FragmentMapsPoint"
     android:background="#FF9800"
     android:orientation="vertical">
 

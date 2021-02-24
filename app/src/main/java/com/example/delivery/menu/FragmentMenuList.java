@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -33,10 +35,12 @@ public class FragmentMenuList extends Fragment {
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
+    private MenuViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
 
         FragmentMenuListBinding binding=FragmentMenuListBinding.inflate(inflater);
         binding.setFragment(this);
@@ -44,8 +48,13 @@ public class FragmentMenuList extends Fragment {
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
+        //List Test
+        viewModel.getData();
+
         RecyclerView recyclerView=binding.recyclerView;
-        //setList(recyclerView, );
+        viewModel.listLive.observe(getViewLifecycleOwner(), (List<Entity> entities) ->{
+            setList(recyclerView,entities);
+        });
 
         return view;
     }
@@ -62,7 +71,7 @@ public class FragmentMenuList extends Fragment {
     private void addDinamicView(){
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_up);
         title = new Button(getActivity());
-        title.setText("Menu sections");
+        title.setText(getResources().getString(R.string.menu_sections));
         //title.setBackgroundColor(Color.parseColor("#FF6200EE"));
         title.setClickable(true);
         title.setTextSize(15);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="entity"
@@ -8,13 +8,16 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
     <ImageView
         android:id="@+id/image"
         android:layout_alignParentLeft="true"
         android:layout_width="150dp"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:imageUrl="@{entity.img}"
+
+        />
 
     <RelativeLayout
         android:layout_toLeftOf="@+id/button"
@@ -26,20 +29,24 @@
             android:id="@+id/name"
             android:hint="name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@{entity.name}"/>
         <TextView
             android:layout_below="@+id/name"
             android:hint="description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@{entity.description}"/>
     </RelativeLayout>
-    <Button
+    <TextView
         android:gravity="center"
         android:id="@+id/button"
+        android:hint="price"
         android:layout_alignParentRight="true"
-        android:text="price"
+        android:text="@{entity.price}"
         android:layout_width="90dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
 </RelativeLayout>
 </layout>
