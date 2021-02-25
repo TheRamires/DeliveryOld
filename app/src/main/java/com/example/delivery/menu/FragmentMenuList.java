@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.delivery.databinding.FragmentMenuListBinding;
 import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
 import com.example.delivery.menu.adapters.RecyclerAdapterList;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class FragmentMenuList extends Fragment {
@@ -48,6 +50,11 @@ public class FragmentMenuList extends Fragment {
         RecyclerView recyclerView=binding.recyclerView;
         viewModel.listLive.observe(getViewLifecycleOwner(), (List<Entity> entities) ->{
             setList(recyclerView,entities);
+            if (getArguments()!=null){
+                String brand=getArguments().getString("brand");
+                Log.d("myLog","••7••• brand "+brand);
+                toPositionHolder(recyclerView,entities,brand);
+            }
         });
 
         return view;
@@ -59,7 +66,8 @@ public class FragmentMenuList extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        //RecyclerView Decor------------------------------------
+
+        //RecyclerView Decor 1------------------------------------
         RecyclerSectionItemDecoration sectionItemDecoration =
                 new RecyclerSectionItemDecoration(getResources()
                         .getDimensionPixelSize(R.dimen.recycler_section_header_height),
@@ -70,6 +78,7 @@ public class FragmentMenuList extends Fragment {
                                 return position == 0
                                         || list.get(position)
                                         //.getLastName()
+
                                         .getBrand()
                                         .charAt(0) != list.get(position - 1)
                                         //.getLastName()
@@ -86,6 +95,20 @@ public class FragmentMenuList extends Fragment {
                             }
                         });
         recyclerView.addItemDecoration(sectionItemDecoration);
+    }
+    private void toPositionHolder(RecyclerView recyclerView, List<Entity> entities, String brand){
+
+        Entity entity;
+        Iterator iterator=entities.iterator();
+        int i=0;
+        while (iterator.hasNext()){
+            i++;
+            entity= (Entity) iterator.next();
+            if (brand.equalsIgnoreCase(entity.getBrand())){
+                recyclerView.getLayoutManager().scrollToPosition(i);
+                return;
+            };
+        }
     }
 
     //---------------------------------------Dinamic view--------------------------------------

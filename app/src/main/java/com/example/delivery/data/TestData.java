@@ -53,17 +53,27 @@ public class TestData {
         return list;
     }
     public List<String> section1Drawables(){
-        String drawable1="icon_ferrari";
-        String drawable2="icon_ford";
-        String drawable3="icon_lamborghini";
-        String drawable4="icon_dodge";
-        String drawable5="icon_porsche";
+        String drawable1="ferrari";
+        String drawable2="ford";
+        String drawable3="lamborghini";
+        String drawable4="dodge";
+        String drawable5="porsche";
         List<String> list=new ArrayList<>();
         list.add(drawable1);
         list.add(drawable2);
         list.add(drawable3);
         list.add(drawable4);
         list.add(drawable5);
+        return list;
+    }
+    public List<String> section2(){
+        String drawable1="sportcars";
+        String drawable2="musclecars";
+        String drawable3="retrocars";
+        List<String> list=new ArrayList<>();
+        list.add(drawable1);
+        list.add(drawable2);
+        list.add(drawable3);
         return list;
     }
 }

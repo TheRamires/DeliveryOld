@@ -16,12 +16,12 @@ public class ImageBindingAdapter {
     @BindingAdapter({"bind:imageUrl"})
     public static void setImageUrl(ImageView imageView, String url) {
         Context context=imageView.getContext();
-        Loger.log("imageBinding "+url);
+        //Loger.log("imageBinding "+url);
         int imageRecource=context.getResources().getIdentifier(url,  "drawable",context.getPackageName());
 
         Drawable drawable=context.getResources().getDrawable((imageRecource));
         imageView.setImageDrawable(drawable);
-        Loger.log("imageBinding "+drawable);
+        //Loger.log("imageBinding "+drawable);
 
 
     }

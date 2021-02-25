@@ -26,7 +26,6 @@ public class FragmentSection1 extends Fragment {
         MenuViewModel viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
 
         viewModel.getSection1Draw();
-
         RecyclerView recyclerView=binding.recycler;
 
         viewModel.section1Live.observe(getViewLifecycleOwner(),(List<String> drawables)-> {

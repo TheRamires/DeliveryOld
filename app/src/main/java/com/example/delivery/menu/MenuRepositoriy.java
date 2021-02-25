@@ -20,4 +20,7 @@ public class MenuRepositoriy {
     public void requestParams1(MutableLiveData<List<String>> section1Live){
         section1Live.setValue(testData.section1Drawables());
     }
+    public void requestParam2(MutableLiveData<List<String>> section2Live){
+        section2Live.setValue(testData.section2());
+    }
 }
