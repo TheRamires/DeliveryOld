@@ -10,13 +10,14 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.delivery.Loger;
 import com.example.delivery.data.Entity;
+import com.example.delivery.data.Param;
 
 import java.util.List;
 
 public class MenuViewModel extends AndroidViewModel {
     MutableLiveData<List<Entity>> listLive=new MutableLiveData<>();
-    MutableLiveData<List<String>> section1Live=new MutableLiveData<>();
-    MutableLiveData<List<String>> section2Live=new MutableLiveData<>();
+    MutableLiveData<List<Param>> section1Live=new MutableLiveData<>();
+    MutableLiveData<List<Param>> section2Live=new MutableLiveData<>();
     private MenuRepositoriy repo=new MenuRepositoriy();
 
     public MenuViewModel(@NonNull Application application) {

@@ -14,14 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
+import com.example.delivery.data.Param;
 import com.example.delivery.databinding.ItemSection1Binding;
 
 import java.util.List;
 
 public class RecyclerAdapterSection1 extends RecyclerView.Adapter<RecyclerAdapterSection1.ItemSection1> {
-    List<String> list;
+    List<Param> list;
 
-    public RecyclerAdapterSection1 (List<String> list){
+    public RecyclerAdapterSection1 (List<Param> list){
         this.list=list;
     }
 
@@ -36,9 +37,10 @@ public class RecyclerAdapterSection1 extends RecyclerView.Adapter<RecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ItemSection1 holder, int position) {
         Loger.log("onBindViewHolder "+list.get(position));
-        holder.binding.setImg(list.get(position));
+        holder.binding.setParam(list.get(position));
         Bundle bundle=new Bundle();
-        bundle.putString("brand",list.get(position));
+        bundle.putString("brand",list.get(position).getName());
+        bundle.putString("key",list.get(position).getKey());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

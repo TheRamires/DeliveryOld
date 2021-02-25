@@ -20,14 +20,14 @@ public class TestData {
         Entity ferrari7=new Entity(Brand.FERRARI.name(), "ferrari_fxx_2005", "FXX 2005", "Скорость: 351 км/ч.\nМощность: 800 л.с.\nРазгон до 100: 3 сек.",Class.SPORTCAR.name(),"145200000");
         Entity ferrari8=new Entity(Brand.FERRARI.name(), "ferrari_p4_pininfarina_2006", "P4/5 Pininfarina 2006", "Скорость: 352 км/ч.\nМощность: 660 л.с.\nРазгон до 100: 3.2 сек.", Class.SPORTCAR.name(),"264000000");
 
-        Entity ford1=new Entity(Brand.FORD.name(), "ford_falcon_2014","Falcon FPV GT F 2014", "Скорость: 297 км/ч.\nМощность: 477 л.с.\nРазгон до 100: 4.7 сек.",Class.MUSLECAR.name(), "3960000");
+        Entity ford1=new Entity(Brand.FORD.name(), "ford_falcon_2014","Falcon FPV GT F 2014", "Скорость: 297 км/ч.\nМощность: 477 л.с.\nРазгон до 100: 4.7 сек.",Class.SPORTCAR.name(), "3960000");
         Entity ford2=new Entity(Brand.FORD.name(), "ford_falcon_fpv_gt_cobra_2007", "Ford Falcon FPV GT Cobra R-spec 2007", "Скорость: 276 км/ч.\nМощность: 411 л.с.\nРазгон до 100: 5.4 сек.",Class.SPORTCAR.name(), "11220000");
         Entity ford3=new Entity(Brand.FORD.name(), "ford_gt_2017","GT 2017", "Скорость: 348 км/ч.\nМощность: 655 л.с.\nРазгон до 100: 3.1 сек.\nДизайн: 10", Class.SPORTCAR.name(),"3960000");
-        Entity ford4=new Entity(Brand.FORD.name(),"ford_gt_avro_720_mirage_2008","GT Avro 720 Mirage 2008","Скорость: 354 км/ч.\nМощность: 720 л.с.\nРазгон до 100: 3.4 сек.",Class.MUSLECAR.name(), "4620000");
+        Entity ford4=new Entity(Brand.FORD.name(),"ford_gt_avro_720_mirage_2008","GT Avro 720 Mirage 2008","Скорость: 354 км/ч.\nМощность: 720 л.с.\nРазгон до 100: 3.4 сек.",Class.SPORTCAR.name(), "4620000");
         Entity ford5=new Entity(Brand.FORD.name(), "ford_gt_geigercars_2010", "GT GeigerCars HP790 2010","Скорость: 360 км/ч.\nМощность: 790 л.с.\nРазгон до 100: 3.6 сек.", Class.SPORTCAR.name(),"19800000");
         Entity ford6=new Entity(Brand.FORD.name(),"ford_gt40_mk_1965","GT40 Mk I 1965","Скорость: 306 км/ч.\nМощность: 380 л.с.\nРазгон до 100: 5.5 сек.",Class.SPORTCAR.name(), "15840000");
         Entity ford7=new Entity(Brand.FORD.name(),"ford_mustang_gt_fastback_1965","Mustang GT Fastback 1965","Скорость: 176 км/ч.\nМощность: 271 л.с.\nРазгон до 100: 7.5 сек.",Class.MUSCLE_RETRO.name(),"10560000");
-        Entity ford8=new Entity(Brand.FORD.name(), "ford_mustang_rtr_package_2011", "Mustang RTR Package 2011","Скорость: 250 км/ч.\nМощность: 428 л.с.\nРазгон до 100: 4.5 сек.", Class.SPORTCAR.name(),"8580000");
+        Entity ford8=new Entity(Brand.FORD.name(), "ford_mustang_rtr_package_2011", "Mustang RTR Package 2011","Скорость: 250 км/ч.\nМощность: 428 л.с.\nРазгон до 100: 4.5 сек.", Class.MUSLECAR.name(),"8580000");
 
         Entity lambo1=new Entity(Brand.LAMBORGHINI.name(), "lambo_huraca_performante_2018", "Huracan Performante 2018", "Скорость: 335 км/ч.\nМощность: 640 л.с.\nРазгон до 100: 2.9 сек.Дизайн: 8.25", Class.SPORTCAR.name(),"17820000");
         Entity lambo2=new Entity(Brand.LAMBORGHINI.name(), "lambo_countach_1974", "Countach LP400 1974","Скорость: 316 км/ч.\nМощность: 375 л.с.\nРазгон до 100: 5.5 сек.",Class.RETRO.name(),"33000000");
@@ -52,28 +52,38 @@ public class TestData {
         list.add(porsche1); list.add(porsche2);
         return list;
     }
-    public List<String> section1Drawables(){
-        String drawable1="ferrari";
-        String drawable2="ford";
-        String drawable3="lamborghini";
-        String drawable4="dodge";
-        String drawable5="porsche";
-        List<String> list=new ArrayList<>();
-        list.add(drawable1);
-        list.add(drawable2);
-        list.add(drawable3);
-        list.add(drawable4);
-        list.add(drawable5);
+    public List<Param> section1Drawables(){
+        String imgUrl1="ferrari";
+        String imgUrl2="ford";
+        String imgUrl3="lamborghini";
+        String imgUrl4="dodge";
+        String imgUrl5="porsche";
+        String name1= imgUrl1.substring(0, 1).toUpperCase() + imgUrl1.substring(1);
+        String name2= imgUrl2.substring(0, 1).toUpperCase() + imgUrl2.substring(1);
+        String name3= imgUrl3.substring(0, 1).toUpperCase() + imgUrl3.substring(1);
+        String name4= imgUrl4.substring(0, 1).toUpperCase() + imgUrl4.substring(1);
+        String name5= imgUrl5.substring(0, 1).toUpperCase() + imgUrl5.substring(1);
+        Key key1=Key.PARAM1;
+        List<Param> list=new ArrayList<>();
+        list.add(new Param(key1,name1, imgUrl1));
+        list.add(new Param(key1,name2, imgUrl2));
+        list.add(new Param(key1,name3, imgUrl3));
+        list.add(new Param(key1,name4, imgUrl4));
+        list.add(new Param(key1,name5, imgUrl5));
         return list;
     }
-    public List<String> section2(){
-        String drawable1="sportcars";
-        String drawable2="musclecars";
-        String drawable3="retrocars";
-        List<String> list=new ArrayList<>();
-        list.add(drawable1);
-        list.add(drawable2);
-        list.add(drawable3);
+    public List<Param> section2(){
+        String imgUrl1="sportcars";
+        String imgUrl2="musclecars";
+        String imgUrl3="retrocars";
+        String name1="Sport cars";
+        String name2="Musclecars";
+        String name3="Retro";
+        Key key2=Key.PARAM2;
+        List<Param> list=new ArrayList<>();
+        list.add(new Param(key2,name1, imgUrl1));
+        list.add(new Param(key2,name2, imgUrl2));
+        list.add(new Param(key2,name3, imgUrl3));
         return list;
     }
 }

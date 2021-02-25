@@ -24,6 +24,9 @@ import com.example.delivery.databinding.FragmentMenuListBinding;
 import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
 import com.example.delivery.menu.adapters.RecyclerAdapterList;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -60,8 +63,17 @@ public class FragmentMenuList extends Fragment {
         return view;
     }
     private void setList (RecyclerView recyclerView, List<Entity> list){
+        List<Entity> list1=new ArrayList<>(list);
+        //sort
+        /*
+        Collections.sort(list1, new Comparator<Entity>() {
+            @Override
+            public int compare(Entity o1, Entity o2) {
+                return o1.getParam1().compareTo(o2.getParam1());
+            }
+        });*/
 
-        RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
+        RecyclerView.Adapter adapter=new RecyclerAdapterList(list1);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);

@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.delivery.data.Entity;
+import com.example.delivery.data.Param;
 import com.example.delivery.data.TestData;
 
 import java.util.Collections;
@@ -22,10 +23,10 @@ public class MenuRepositoriy {
         });
         listLive.setValue(list);
     }
-    public void requestParams1(MutableLiveData<List<String>> section1Live){
+    public void requestParams1(MutableLiveData<List<Param>> section1Live){
         section1Live.setValue(testData.section1Drawables());
     }
-    public void requestParam2(MutableLiveData<List<String>> section2Live){
+    public void requestParam2(MutableLiveData<List<Param>> section2Live){
         section2Live.setValue(testData.section2());
     }
 }
