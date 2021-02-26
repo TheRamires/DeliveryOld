@@ -10,8 +10,6 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,106 +21,84 @@ import com.example.delivery.data.Entity;
 import com.example.delivery.databinding.FragmentMenuListBinding;
 import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
 import com.example.delivery.menu.adapters.RecyclerAdapterList;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
+import static com.example.delivery.utils.Constants.KEY1;
+import static com.example.delivery.utils.Constants.KEY2;
+
 public class FragmentMenuList extends Fragment {
+    private FragmentMenuListBinding binding;
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
     private MenuViewModel viewModel;
+    private SectionViewModel viewModelSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        viewModelSection=new ViewModelProvider(requireActivity()).get(SectionViewModel.class);
 
-        FragmentMenuListBinding binding=FragmentMenuListBinding.inflate(inflater);
+        binding=FragmentMenuListBinding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
-        //List Test
         viewModel.getData();
 
-        RecyclerView recyclerView=binding.recyclerView;
         viewModel.listLive.observe(getViewLifecycleOwner(), (List<Entity> entities) ->{
-            setList(recyclerView,entities);
+
+            //проверяет bundle переданный из RecyclerAdapterSection
+            //если его нет, то действие по -умолчанию ->
             if (getArguments()!=null){
-                String brand=getArguments().getString("brand");
-                Log.d("myLog","••7••• brand "+brand);
-                toPositionHolder(recyclerView,entities,brand);
+                String key=getArguments().getString("key");
+                //bundle.key указывает из какого Section был переход по значению PARAM
+                switch (key){
+                    case KEY1:
+                        List<Entity> list1=viewModelSection.sortedListSectionOne(entities);
+                        RecyclerSectionItemDecoration sectionItemDecoration=
+                                viewModelSection.getDecorForSection1(list1);
+                        RecyclerView recycler=recyclerConfig(list1,sectionItemDecoration);
+
+                        String brand=getArguments().getString("value");
+                        viewModelSection.toPositionHolderForSection1(recycler,list1,brand);
+                        break;
+
+                    case KEY2:
+                        List<Entity> list2=viewModelSection.sortedListSectionTwo(entities);
+                        RecyclerSectionItemDecoration sectionItemDecoration2=
+                                viewModelSection.getDecorForSection2(list2);
+                        RecyclerView recycler2=recyclerConfig(list2,sectionItemDecoration2);
+
+                        String param=getArguments().getString("value");
+                        viewModelSection.toPositionHolderForSection2(recycler2, list2,param);
+                        break;
+                }
+            }else{
+                //действие по -умолчанию
+                List<Entity> list=viewModelSection.sortedListSectionOne(entities);
+                RecyclerSectionItemDecoration sectionItemDecoration=
+                        viewModelSection.getDecorForSection1(list);
+                recyclerConfig(list,sectionItemDecoration);
             }
         });
-
         return view;
     }
-    private void setList (RecyclerView recyclerView, List<Entity> list){
-        List<Entity> list1=new ArrayList<>(list);
-        //sort
-        /*
-        Collections.sort(list1, new Comparator<Entity>() {
-            @Override
-            public int compare(Entity o1, Entity o2) {
-                return o1.getParam1().compareTo(o2.getParam1());
-            }
-        });*/
 
-        RecyclerView.Adapter adapter=new RecyclerAdapterList(list1);
+    private RecyclerView recyclerConfig (List<Entity> list,
+                                 RecyclerSectionItemDecoration sectionItemDecoration){
+        RecyclerView recyclerView=binding.recyclerView;
+        RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        //RecyclerView Decor 1------------------------------------
-        RecyclerSectionItemDecoration sectionItemDecoration =
-                new RecyclerSectionItemDecoration(getResources()
-                        .getDimensionPixelSize(R.dimen.recycler_section_header_height),
-                        true, // true for sticky, false for not
-                        new RecyclerSectionItemDecoration.SectionCallback() {
-                            @Override
-                            public boolean isSection(int position) {
-                                return position == 0
-                                        || list.get(position)
-                                        //.getLastName()
-
-                                        .getBrand()
-                                        .charAt(0) != list.get(position - 1)
-                                        //.getLastName()
-                                        .getBrand()
-                                        .charAt(0);
-                            }
-
-                            @Override
-                            public CharSequence getSectionHeader(int position) {
-                                return list.get(position)
-                                        //.getLastName()
-                                        .getBrand();
-                                //.subSequence(0, 3); //.subSequence(0, 1);   //•установление заголовка
-                            }
-                        });
         recyclerView.addItemDecoration(sectionItemDecoration);
+        return recyclerView;
     }
-    private void toPositionHolder(RecyclerView recyclerView, List<Entity> entities, String brand){
-
-        Entity entity;
-        Iterator iterator=entities.iterator();
-        int i=0;
-        while (iterator.hasNext()){
-            i++;
-            entity= (Entity) iterator.next();
-            if (brand.equalsIgnoreCase(entity.getBrand())){
-                recyclerView.getLayoutManager().scrollToPosition(i);
-                return;
-            };
-        }
-    }
-
     //---------------------------------------Dinamic view--------------------------------------
     private void addDinamicView(){
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_up);
@@ -131,13 +107,10 @@ public class FragmentMenuList extends Fragment {
         //title.setBackgroundColor(Color.parseColor("#FF6200EE"));
         title.setClickable(true);
         title.setTextSize(15);
-        title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        title.setOnClickListener((View v) ->{
                 getNavOptions();
                 navController.navigate(R.id.fragmentSectionContainer,null,getNavOptions());
                 Loger.log("Dinamic Text View is Cliked");
-            }
         });
         toolbar.addView(title);
     }

@@ -1,13 +1,10 @@
 package com.example.delivery.data;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.example.delivery.Loger;
-import com.example.delivery.R;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.delivery.utils.Constants.KEY1;
+import static com.example.delivery.utils.Constants.KEY2;
 
 public class TestData {
     public List<Entity> data(){
@@ -26,7 +23,7 @@ public class TestData {
         Entity ford4=new Entity(Brand.FORD.name(),"ford_gt_avro_720_mirage_2008","GT Avro 720 Mirage 2008","Скорость: 354 км/ч.\nМощность: 720 л.с.\nРазгон до 100: 3.4 сек.",Class.SPORTCAR.name(), "4620000");
         Entity ford5=new Entity(Brand.FORD.name(), "ford_gt_geigercars_2010", "GT GeigerCars HP790 2010","Скорость: 360 км/ч.\nМощность: 790 л.с.\nРазгон до 100: 3.6 сек.", Class.SPORTCAR.name(),"19800000");
         Entity ford6=new Entity(Brand.FORD.name(),"ford_gt40_mk_1965","GT40 Mk I 1965","Скорость: 306 км/ч.\nМощность: 380 л.с.\nРазгон до 100: 5.5 сек.",Class.SPORTCAR.name(), "15840000");
-        Entity ford7=new Entity(Brand.FORD.name(),"ford_mustang_gt_fastback_1965","Mustang GT Fastback 1965","Скорость: 176 км/ч.\nМощность: 271 л.с.\nРазгон до 100: 7.5 сек.",Class.MUSCLE_RETRO.name(),"10560000");
+        Entity ford7=new Entity(Brand.FORD.name(),"ford_mustang_gt_fastback_1965","Mustang GT Fastback 1965","Скорость: 176 км/ч.\nМощность: 271 л.с.\nРазгон до 100: 7.5 сек.",Class.MUSLECAR.name(),"10560000");
         Entity ford8=new Entity(Brand.FORD.name(), "ford_mustang_rtr_package_2011", "Mustang RTR Package 2011","Скорость: 250 км/ч.\nМощность: 428 л.с.\nРазгон до 100: 4.5 сек.", Class.MUSLECAR.name(),"8580000");
 
         Entity lambo1=new Entity(Brand.LAMBORGHINI.name(), "lambo_huraca_performante_2018", "Huracan Performante 2018", "Скорость: 335 км/ч.\nМощность: 640 л.с.\nРазгон до 100: 2.9 сек.Дизайн: 8.25", Class.SPORTCAR.name(),"17820000");
@@ -35,8 +32,8 @@ public class TestData {
 
         Entity dodge1=new Entity(Brand.DODGE.name(),"dodge_challenger_2019", "Challenger SRT Hellcat Redeye 2019","Скорость: 327 км/ч.\nМощность: 808 л.с.\nРазгон до 100: 3.5 сек.\nДизайн: 10", Class.MUSLECAR.name(),"5280000");
         Entity dodge2=new Entity(Brand.DODGE.name(), "dodge_srt_viper_ta_2014", "SRT Viper TA 2014","Скорость: 334 км/ч.\nМощность: 649 л.с.\nРазгон до 100: 3.4 сек.",Class.SPORTCAR.name(),"5940000");
-        Entity dodge3=new Entity(Brand.DODGE.name(),"dodge_challenger_r1971","Challenger R/T 426 Hemi 1971","Скорость: 210 км/ч.\nМощность: 425 л.с.\nРазгон до 100: 6.2 сек.",Class.MUSCLE_RETRO.name(),"5280000");
-        Entity dodge4=new Entity(Brand.DODGE.name(),"dodge_charger_1971","Charger Super Bee 1971","Скорость: 210 км/ч.\nМощность: 385 л.с.\nРазгон до 100: 6.9 сек.", Class.MUSCLE_RETRO.name(),"3960000");
+        Entity dodge3=new Entity(Brand.DODGE.name(),"dodge_challenger_r1971","Challenger R/T 426 Hemi 1971","Скорость: 210 км/ч.\nМощность: 425 л.с.\nРазгон до 100: 6.2 сек.",Class.MUSLECAR.name(),"5280000");
+        Entity dodge4=new Entity(Brand.DODGE.name(),"dodge_charger_1971","Charger Super Bee 1971","Скорость: 210 км/ч.\nМощность: 385 л.с.\nРазгон до 100: 6.9 сек.", Class.MUSLECAR.name(),"3960000");
 
 
         Entity porsche1=new Entity(Brand.PORSCHE.name(),"porsche_918_spyder_2014","918 Spyder 2014", "Скорость: 345 км/ч.\nМощность: 887 л.с.\nРазгон до 100: 2.8 сек.",Class.SPORTCAR.name(), "85800000");
@@ -63,7 +60,7 @@ public class TestData {
         String name3= imgUrl3.substring(0, 1).toUpperCase() + imgUrl3.substring(1);
         String name4= imgUrl4.substring(0, 1).toUpperCase() + imgUrl4.substring(1);
         String name5= imgUrl5.substring(0, 1).toUpperCase() + imgUrl5.substring(1);
-        Key key1=Key.PARAM1;
+        String key1=KEY1;
         List<Param> list=new ArrayList<>();
         list.add(new Param(key1,name1, imgUrl1));
         list.add(new Param(key1,name2, imgUrl2));
@@ -76,10 +73,10 @@ public class TestData {
         String imgUrl1="sportcars";
         String imgUrl2="musclecars";
         String imgUrl3="retrocars";
-        String name1="Sport cars";
-        String name2="Musclecars";
-        String name3="Retro";
-        Key key2=Key.PARAM2;
+        String name1="SPORTCAR";
+        String name2="MUSLECAR";
+        String name3="RETRO";
+        String key2=KEY2;
         List<Param> list=new ArrayList<>();
         list.add(new Param(key2,name1, imgUrl1));
         list.add(new Param(key2,name2, imgUrl2));
@@ -91,6 +88,6 @@ enum Brand {
     FERRARI,FORD,LAMBORGHINI,DODGE,PORSCHE
 }
 enum Class{
-    SPORTCAR, MUSLECAR, RETRO, MUSCLE_RETRO
+    SPORTCAR, MUSLECAR, RETRO
 }
 

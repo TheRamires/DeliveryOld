@@ -5,14 +5,14 @@ public class Param {
     private String name;
     private String img;
 
-    public Param(Key key, String name, String img){
-        this.key=key.name();
+    public Param(String key, String name, String img){
+        this.key=key;
         this.name=name;
         this.img=img;
     }
 
-    public void setKey(Key key){
-        this.key=key.name();
+    public void setKey(String key){
+        this.key=key;
     }
     public String getKey (){
         return key;

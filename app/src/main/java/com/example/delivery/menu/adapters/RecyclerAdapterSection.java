@@ -1,8 +1,6 @@
 package com.example.delivery.menu.adapters;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +17,10 @@ import com.example.delivery.databinding.ItemSection1Binding;
 
 import java.util.List;
 
-public class RecyclerAdapterSection1 extends RecyclerView.Adapter<RecyclerAdapterSection1.ItemSection1> {
+public class RecyclerAdapterSection extends RecyclerView.Adapter<RecyclerAdapterSection.ItemSection1> {
     List<Param> list;
 
-    public RecyclerAdapterSection1 (List<Param> list){
+    public RecyclerAdapterSection(List<Param> list){
         this.list=list;
     }
 
@@ -39,12 +37,12 @@ public class RecyclerAdapterSection1 extends RecyclerView.Adapter<RecyclerAdapte
         Loger.log("onBindViewHolder "+list.get(position));
         holder.binding.setParam(list.get(position));
         Bundle bundle=new Bundle();
-        bundle.putString("brand",list.get(position).getName());
+        bundle.putString("value",list.get(position).getName());
         bundle.putString("key",list.get(position).getKey());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Loger.log("••••7•"+list.get(position));
+                Loger.log("••••7•"+list.get(position).getKey()+" "+list.get(position).getName()+" "+list.get(position).getImg() );
                 Navigation.findNavController(v).navigate(R.id.fragmentMenuList,bundle);
             }
         });

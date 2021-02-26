@@ -12,10 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.delivery.R;
 import com.example.delivery.data.Param;
 import com.example.delivery.databinding.FragmentSection2Binding;
-import com.example.delivery.menu.adapters.RecyclerAdapterSection1;
+import com.example.delivery.menu.adapters.RecyclerAdapterSection;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class FragmentSection2 extends Fragment {
         viewModel.section2Live.observe(getViewLifecycleOwner(), new Observer<List<Param>>() {
             @Override
             public void onChanged(List<Param> drawables) {
-                RecyclerView.Adapter adapter=new RecyclerAdapterSection1(drawables);
+                RecyclerView.Adapter adapter=new RecyclerAdapterSection(drawables);
                 recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getBaseContext(),
                         2,GridLayoutManager.VERTICAL,false));
                 recyclerView.setHasFixedSize(true);
