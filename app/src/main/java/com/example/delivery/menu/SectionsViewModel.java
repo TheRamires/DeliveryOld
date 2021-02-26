@@ -16,10 +16,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class SectionViewModel extends AndroidViewModel {
+public class SectionsViewModel extends AndroidViewModel {
     private Context context;
 
-    public SectionViewModel(@NonNull Application application) {
+    public SectionsViewModel(@NonNull Application application) {
         super(application);
         context=getApplication().getBaseContext();
     }

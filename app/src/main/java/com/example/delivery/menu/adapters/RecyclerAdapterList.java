@@ -1,6 +1,7 @@
 package com.example.delivery.menu.adapters;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.delivery.Loger;
 import com.example.delivery.R;
 import com.example.delivery.data.Entity;
 import com.example.delivery.databinding.ItemListBinding;
@@ -34,10 +36,12 @@ public class RecyclerAdapterList extends RecyclerView.Adapter<RecyclerAdapterLis
     @Override
     public void onBindViewHolder(@NonNull ItemList holder, int position) {
         Bundle bundle=new Bundle();
-        bundle.putInt("position",position);
+        //bundle.putInt("position",position);
 
         holder.binding.setEntity(list.get(position));
         holder.itemView.setOnClickListener((View v)-> {
+            bundle.putString("name",list.get(position).getName());
+            Loger.log("bundle "+list.get(position).getName());
             Navigation.findNavController(v).navigate(R.id.fragmentPosition, bundle);
         });
 

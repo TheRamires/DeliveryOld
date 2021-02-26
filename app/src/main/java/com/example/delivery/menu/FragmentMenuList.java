@@ -32,13 +32,13 @@ public class FragmentMenuList extends Fragment {
     private Button title;
     private NavController navController;
     private MenuViewModel viewModel;
-    private SectionViewModel viewModelSection;
+    private SectionsViewModel viewModelSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
-        viewModelSection=new ViewModelProvider(requireActivity()).get(SectionViewModel.class);
+        viewModelSection=new ViewModelProvider(requireActivity()).get(SectionsViewModel.class);
 
         binding=FragmentMenuListBinding.inflate(inflater);
         binding.setFragment(this);

@@ -20,13 +20,14 @@ import com.example.delivery.R;
 import com.example.delivery.data.Entity;
 import com.example.delivery.databinding.FragmentPositionBinding;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class FragmentPosition extends Fragment {
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
-    public Entity entity;
+    public Entity entity=null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,41 +37,24 @@ public class FragmentPosition extends Fragment {
         View view=binding.getRoot();
         MenuViewModel viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
 
-        int position=getArguments().getInt("position");
+       // int position=getArguments().getInt("position");
+        String name=getArguments().getString("name");
+        Loger.log("name "+name);
         List<Entity> list=viewModel.listLive.getValue();
-        entity=list.get(position);
+        //entity=list.get(position);
 
+        Iterator iterator=list.iterator();
+        Entity entityTemp;
+        while (iterator.hasNext()){
+            entityTemp= (Entity) iterator.next();
+            Loger.log("iterator name "+entityTemp.getName());
+            if (name.equalsIgnoreCase(entityTemp.getName())) {
+                entity = entityTemp;
+                break;
+            }
+        }
+        entityTemp=null;
 
         return  view;
-    }
-
-    //---------------------------------------Dinamic view--------------------------------------
-    private void addDinamicView(){
-        toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_up);
-        title = new Button(getActivity());
-        title.setText(getResources().getString(R.string.menu_sections));
-        //title.setBackgroundColor(Color.parseColor("#FF6200EE"));
-        title.setClickable(true);
-        title.setTextSize(15);
-        title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getNavOptions();
-                navController.navigate(R.id.fragmentSectionContainer,null,getNavOptions());
-                Loger.log("Dinamic Text View is Clicked");
-            }
-        });
-        toolbar.addView(title);
-    }
-    protected NavOptions getNavOptions() {
-
-        NavOptions navOptions = new NavOptions.Builder()
-                .setEnterAnim(R.animator.slide_down)
-                //.setExitAnim(R.animator.slide_up)
-                //.setPopEnterAnim(R.animator.slide_down)
-                .setPopExitAnim(R.animator.slide_up)
-                .build();
-
-        return navOptions;
     }
 }
