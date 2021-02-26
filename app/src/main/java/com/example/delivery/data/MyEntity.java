@@ -15,6 +15,9 @@ public class MyEntity {
     private String param1;
     private String param2;
 
+    public MyEntity(){
+
+    }
     public MyEntity(String brand, String img, String name, String description, String param1, String price){
         this.img=img;
         this.brand=brand;

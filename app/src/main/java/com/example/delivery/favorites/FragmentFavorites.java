@@ -5,15 +5,23 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.delivery.R;
+import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentFavoritesBinding;
+import com.example.delivery.menu.adapters.RecyclerAdapterList;
+
+import java.util.List;
 
 public class FragmentFavorites extends Fragment {
     private Toolbar toolbar;
@@ -25,10 +33,21 @@ public class FragmentFavorites extends Fragment {
         FragmentFavoritesBinding binding=FragmentFavoritesBinding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
+
+        FavoritesViewModel viewModel=new ViewModelProvider(this).get(FavoritesViewModel.class);
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
-        // Inflate the layout for this fragment
+        viewModel.getListFavorites();
+        RecyclerView recyclerView=binding.recycler;
+        viewModel.favoritesLive.observe(getViewLifecycleOwner(), (List<MyEntity> list)-> {
+                RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+        });
+
         return view;
     }
     private void addDinamicView(){

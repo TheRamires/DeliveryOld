@@ -19,14 +19,16 @@ import com.example.delivery.Loger;
 import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentPositionBinding;
+import com.example.delivery.favorites.FavoritesViewModel;
 
 import java.util.Iterator;
 import java.util.List;
 
 public class FragmentPosition extends Fragment {
     private Toolbar toolbar;
-    private Button title;
+    private Menu menu;
     private NavController navController;
+
     public MyEntity entity=null;
 
     @Override
@@ -35,28 +37,26 @@ public class FragmentPosition extends Fragment {
         FragmentPositionBinding binding=FragmentPositionBinding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
+        MenuViewModel menuViewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        FavoritesViewModel favoritesViewModel=new ViewModelProvider(this).get(FavoritesViewModel.class);
 
-        Toolbar actionMenu=binding.actionMenu;
-        Menu menu=actionMenu.getMenu();
-        requireActivity().getMenuInflater().inflate(R.menu.menu_position, menu);
-        for (int i = 0; i < menu.size(); i++) {
-            menu.getItem(i).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    if (item.getItemId() == R.id.item){
-                        Loger.log("Position menu click");
-                    }
-                    return onOptionsItemSelected(item);
-                }
-            });
-        }
+        toolbar= (Toolbar) getActivity().findViewById(R.id.toolbar_up);
+        menu=toolbar.getMenu();
+        menu.clear();
+        requireActivity().getMenuInflater().inflate(R.menu.menu_position,menu);
 
-        MenuViewModel viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        menu.getItem(0).setOnMenuItemClickListener((MenuItem item)-> {
+            Loger.log("Add favorite "+entity.getName());
+            if (entity!=null) {
+                favoritesViewModel.cheakPosition(entity);
+            }
+            return onOptionsItemSelected(item);
+        });
 
        // int position=getArguments().getInt("position");
         String name=getArguments().getString("name");
         Loger.log("name "+name);
-        List<MyEntity> list=viewModel.listLive.getValue();
+        List<MyEntity> list=menuViewModel.listLive.getValue();
         //entity=list.get(position);
 
         Iterator iterator=list.iterator();
@@ -73,4 +73,12 @@ public class FragmentPosition extends Fragment {
 
         return  view;
     }
+    @Override
+    public void onStop() {
+        super.onStop();
+        menu.clear();
+        requireActivity().getMenuInflater().inflate(R.menu.toolbar_menu_up,menu);
+
+    }
+
 }

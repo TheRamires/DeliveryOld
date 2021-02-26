@@ -7,5 +7,5 @@ import com.example.delivery.data.MyEntity;
 
 @Database(entities = {MyEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract MyDao daoWeather ();
+    public abstract DaoFavorites daoFavorites ();
 }
