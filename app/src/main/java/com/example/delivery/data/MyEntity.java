@@ -1,6 +1,12 @@
 package com.example.delivery.data;
 
-public class Entity {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
+public class MyEntity {
+    @PrimaryKey (autoGenerate = true)
+    private int id;
     private String img;
     private String brand;
     private String name;
@@ -9,7 +15,7 @@ public class Entity {
     private String param1;
     private String param2;
 
-    public Entity(String brand,String img,String name,String description,String param1, String price){
+    public MyEntity(String brand, String img, String name, String description, String param1, String price){
         this.img=img;
         this.brand=brand;
         this.name=name;
@@ -18,7 +24,12 @@ public class Entity {
         this.param1=param1;
 
     }
-
+    public void setId(int id){
+        this.id=id;
+    }
+    public int getId(){
+        return id;
+    }
     public void setImg(String img){
         this.img=img;
     }

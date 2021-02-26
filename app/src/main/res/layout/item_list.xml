@@ -6,7 +6,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="entity"
-            type="com.example.delivery.data.Entity" />
+            type="com.example.delivery.data.MyEntity" />
     </data>
 
     <RelativeLayout

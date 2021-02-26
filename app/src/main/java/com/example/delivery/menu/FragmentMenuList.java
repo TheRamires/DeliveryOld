@@ -17,7 +17,7 @@ import android.widget.Button;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
-import com.example.delivery.data.Entity;
+import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentMenuListBinding;
 import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
 import com.example.delivery.menu.adapters.RecyclerAdapterList;
@@ -48,7 +48,7 @@ public class FragmentMenuList extends Fragment {
 
         viewModel.getData();
 
-        viewModel.listLive.observe(getViewLifecycleOwner(), (List<Entity> entities) ->{
+        viewModel.listLive.observe(getViewLifecycleOwner(), (List<MyEntity> entities) ->{
 
             //проверяет bundle переданный из RecyclerAdapterSection
             //если его нет, то действие по -умолчанию ->
@@ -57,7 +57,7 @@ public class FragmentMenuList extends Fragment {
                 //bundle.key указывает из какого Section был переход по значению PARAM
                 switch (key){
                     case KEY1:
-                        List<Entity> list1=viewModelSection.sortedListSectionOne(entities);
+                        List<MyEntity> list1=viewModelSection.sortedListSectionOne(entities);
                         RecyclerSectionItemDecoration sectionItemDecoration=
                                 viewModelSection.getDecorForSection1(list1);
                         RecyclerView recycler=recyclerConfig(list1,sectionItemDecoration);
@@ -67,7 +67,7 @@ public class FragmentMenuList extends Fragment {
                         break;
 
                     case KEY2:
-                        List<Entity> list2=viewModelSection.sortedListSectionTwo(entities);
+                        List<MyEntity> list2=viewModelSection.sortedListSectionTwo(entities);
                         RecyclerSectionItemDecoration sectionItemDecoration2=
                                 viewModelSection.getDecorForSection2(list2);
                         RecyclerView recycler2=recyclerConfig(list2,sectionItemDecoration2);
@@ -78,7 +78,7 @@ public class FragmentMenuList extends Fragment {
                 }
             }else{
                 //действие по -умолчанию
-                List<Entity> list=viewModelSection.sortedListSectionOne(entities);
+                List<MyEntity> list=viewModelSection.sortedListSectionOne(entities);
                 RecyclerSectionItemDecoration sectionItemDecoration=
                         viewModelSection.getDecorForSection1(list);
                 recyclerConfig(list,sectionItemDecoration);
@@ -87,7 +87,7 @@ public class FragmentMenuList extends Fragment {
         return view;
     }
 
-    private RecyclerView recyclerConfig (List<Entity> list,
+    private RecyclerView recyclerConfig (List<MyEntity> list,
                                  RecyclerSectionItemDecoration sectionItemDecoration){
         RecyclerView recyclerView=binding.recyclerView;
         RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
@@ -99,6 +99,7 @@ public class FragmentMenuList extends Fragment {
         recyclerView.addItemDecoration(sectionItemDecoration);
         return recyclerView;
     }
+
     //---------------------------------------Dinamic view--------------------------------------
     private void addDinamicView(){
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_up);

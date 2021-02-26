@@ -1,7 +1,6 @@
 package com.example.delivery.menu.adapters;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
-import com.example.delivery.data.Entity;
+import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.ItemListBinding;
 
 import java.util.List;
 
 public class RecyclerAdapterList extends RecyclerView.Adapter<RecyclerAdapterList.ItemList> {
-    List<Entity> list;
+    List<MyEntity> list;
 
-    public RecyclerAdapterList(List<Entity> list){
+    public RecyclerAdapterList(List<MyEntity> list){
         this.list=list;
     }
 

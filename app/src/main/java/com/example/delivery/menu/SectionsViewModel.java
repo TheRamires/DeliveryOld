@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delivery.R;
-import com.example.delivery.data.Entity;
+import com.example.delivery.data.MyEntity;
 import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
 
 import java.util.ArrayList;
@@ -24,26 +24,22 @@ public class SectionsViewModel extends AndroidViewModel {
         context=getApplication().getBaseContext();
     }
 
-    public List<Entity> sortedListSectionOne(List<Entity> entities){
-        List<Entity> list=new ArrayList<>(entities);
-        //sort
-
-        Collections.sort(list, (Entity o1, Entity o2)-> {
+    public List<MyEntity> sortedListSectionOne(List<MyEntity> entities){
+        List<MyEntity> list=new ArrayList<>(entities);
+        Collections.sort(list, (MyEntity o1, MyEntity o2)-> {
                 return o1.getBrand().compareTo(o2.getBrand());
         });
         return list;
     }
 
-    public List<Entity> sortedListSectionTwo(List<Entity> entities){
-        List<Entity> list=new ArrayList<>(entities);
-        //sort
-
-        Collections.sort(list, (Entity o1, Entity o2)-> {
+    public List<MyEntity> sortedListSectionTwo(List<MyEntity> entities){
+        List<MyEntity> list=new ArrayList<>(entities);
+        Collections.sort(list, (MyEntity o1, MyEntity o2)-> {
                 return o1.getParam1().compareTo(o2.getParam1());
         });
         return list;
     }
-    public RecyclerSectionItemDecoration getDecorForSection1(List<Entity>list){
+    public RecyclerSectionItemDecoration getDecorForSection1(List<MyEntity>list){
         RecyclerSectionItemDecoration sectionItemDecoration =
                 new RecyclerSectionItemDecoration(context.getResources()
                         .getDimensionPixelSize(R.dimen.recycler_section_header_height),
@@ -54,7 +50,6 @@ public class SectionsViewModel extends AndroidViewModel {
                                 return position == 0
                                         || list.get(position)
                                         //.getLastName()
-
                                         .getBrand()
                                         .charAt(0) != list.get(position - 1)
                                         //.getLastName()
@@ -72,7 +67,7 @@ public class SectionsViewModel extends AndroidViewModel {
                         });
         return sectionItemDecoration;
     }
-    public RecyclerSectionItemDecoration getDecorForSection2(List<Entity>list){
+    public RecyclerSectionItemDecoration getDecorForSection2(List<MyEntity>list){
         RecyclerSectionItemDecoration sectionItemDecoration =
                 new RecyclerSectionItemDecoration(context.getResources()
                         .getDimensionPixelSize(R.dimen.recycler_section_header_height),
@@ -83,7 +78,6 @@ public class SectionsViewModel extends AndroidViewModel {
                                 return position == 0
                                         || list.get(position)
                                         //.getLastName()
-
                                         .getParam1()
                                         .charAt(0) != list.get(position - 1)
                                         //.getLastName()
@@ -102,12 +96,12 @@ public class SectionsViewModel extends AndroidViewModel {
         return sectionItemDecoration;
     }
 
-    public void toPositionHolderForSection1(RecyclerView recyclerView, List<Entity> entities, String value){
-        Entity entity;
+    public void toPositionHolderForSection1(RecyclerView recyclerView, List<MyEntity> entities, String value){
+        MyEntity entity;
         Iterator iterator=entities.iterator();
         int i=0;
         while (iterator.hasNext()){
-            entity= (Entity) iterator.next();
+            entity= (MyEntity) iterator.next();
             if (value.equalsIgnoreCase(entity.getBrand())){
                 recyclerView.getLayoutManager().scrollToPosition(i);
                 return;
@@ -115,12 +109,12 @@ public class SectionsViewModel extends AndroidViewModel {
             i++;
         }
     }
-    public void toPositionHolderForSection2(RecyclerView recyclerView, List<Entity> entities, String value){
-        Entity entity;
+    public void toPositionHolderForSection2(RecyclerView recyclerView, List<MyEntity> entities, String value){
+        MyEntity entity;
         Iterator iterator=entities.iterator();
         int i=0;
         while (iterator.hasNext()){
-            entity= (Entity) iterator.next();
+            entity= (MyEntity) iterator.next();
             if (value.equalsIgnoreCase(entity.getParam1())){
                 recyclerView.getLayoutManager().scrollToPosition(i);
                 return;
