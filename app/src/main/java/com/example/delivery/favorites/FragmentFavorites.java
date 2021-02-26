@@ -41,7 +41,7 @@ public class FragmentFavorites extends Fragment {
         viewModel.getListFavorites();
         RecyclerView recyclerView=binding.recycler;
         viewModel.favoritesLive.observe(getViewLifecycleOwner(), (List<MyEntity> list)-> {
-                RecyclerView.Adapter adapter=new RecyclerAdapterList(list);
+                RecyclerView.Adapter adapter=new RecyclerAdapterList(list,true,viewModel);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(adapter);

@@ -19,4 +19,15 @@ public class FavoritesViewModel extends ViewModel {
     public void cheakPosition(MyEntity entity){
         repo.cheakPosition(entity);
     }
+    public void deletePosition(MyEntity entity){
+        repo.delete(entity);
+        new Thread(()-> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            getListFavorites();
+        }).start();
+    }
 }

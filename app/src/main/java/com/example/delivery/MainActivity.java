@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.delivery.databinding.ItemListBinding;
 import com.example.delivery.favorites.FavoritesViewModel;
 import com.example.delivery.menu.adapters.ImageBindingAdapter;
 import com.example.delivery.databinding.ActivityMainBinding;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private MapspointViewModel mapspointViewModel;
     private MenuViewModel menuViewModel;
     private FavoritesViewModel favoritesViewModel;
-    private GeneralViewModel generalViewModel;
     private Permission permission;
     private ImageBindingAdapter imageBindingAdapter;
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         mapspointViewModel = new ViewModelProvider(this).get(MapspointViewModel.class);
         menuViewModel=new ViewModelProvider(this).get(MenuViewModel.class);
         favoritesViewModel=new ViewModelProvider(this).get(FavoritesViewModel.class);
-        generalViewModel=new ViewModelProvider(this).get(GeneralViewModel.class);
 
         //====================================Permisions==================================
         permission= new Permission(mapspointViewModel, this, this);

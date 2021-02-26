@@ -30,4 +30,9 @@ public class FavoritesRepositoriy {
             }
         }).start();
     }
+    public void delete(MyEntity myEntity){
+        new Thread(()-> {
+            int number=dao.deleteFavorite(myEntity);
+        }).start();
+    }
 }

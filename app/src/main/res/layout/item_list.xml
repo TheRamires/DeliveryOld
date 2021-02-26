@@ -3,8 +3,8 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="visibility"
-            type="com.example.delivery.GeneralViewModel" />
+            name="isVisible"
+            type="boolean"/>
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             />
         <ImageButton
-            android:visibility="@{visibility. : ? View.VISIBLE : View.GONE }"
+            android:visibility="@{isVisible ? View.VISIBLE : View.INVISIBLE, default=invisible }"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"

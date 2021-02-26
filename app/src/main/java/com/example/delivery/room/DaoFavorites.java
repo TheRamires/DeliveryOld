@@ -19,7 +19,7 @@ public interface DaoFavorites {
     List<MyEntity> getFavorites();
 
     @Delete
-    void deleteFavorite(MyEntity myEntity);
+    int deleteFavorite(MyEntity myEntity);
 
     @Query("SELECT * FROM myentity WHERE name=:name")
     MyEntity cheakPosition(String name);
