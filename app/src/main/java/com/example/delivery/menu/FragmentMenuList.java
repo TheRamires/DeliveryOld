@@ -31,13 +31,13 @@ public class FragmentMenuList extends Fragment {
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
-    private MenuViewModel viewModel;
+    private MainViewModel viewModel;
     private SectionsViewModel viewModelSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        viewModel=new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         viewModelSection=new ViewModelProvider(requireActivity()).get(SectionsViewModel.class);
 
         binding=FragmentMenuListBinding.inflate(inflater);
@@ -46,9 +46,11 @@ public class FragmentMenuList extends Fragment {
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
-        viewModel.getData();
+        //viewModel.getData();
 
         viewModel.listLive.observe(getViewLifecycleOwner(), (List<MyEntity> entities) ->{
+
+            Loger.log("FragmentMenuList. observe. entities");
 
             //проверяет bundle переданный из RecyclerAdapterSection
             //если его нет, то действие по -умолчанию ->

@@ -1,0 +1,32 @@
+package com.example.delivery.room;
+
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+
+import com.example.delivery.data.MyEntity;
+import com.example.delivery.data.Param;
+
+import java.util.List;
+
+import io.reactivex.Maybe;
+import io.reactivex.Single;
+
+@Dao
+public interface MyDao {
+    @Insert
+    long[] saveList (List<MyEntity> list);
+
+    @Query("SELECT * FROM myentity")
+    Maybe<List<MyEntity>> loadList ();
+
+    @Query("SELECT *FROM myentity WHERE id=:id")
+    Maybe<MyEntity> getPosition(int id);
+
+    @Insert
+    void saveParams (List<Param> list);
+
+    @Query("SELECT * FROM Param")
+    Maybe<List<Param>> loadParam ( );
+}

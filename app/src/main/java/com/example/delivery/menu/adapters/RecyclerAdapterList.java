@@ -49,13 +49,12 @@ public class RecyclerAdapterList extends RecyclerView.Adapter<RecyclerAdapterLis
         if (crosVisible){
             holder.binding.setIsVisible(true);
             holder.binding.cros.setOnClickListener((View v) ->{
-                favoritesViewModel.deletePosition(list.get(position));
+                //favoritesViewModel.deletePosition(list.get(position));
             });
         }
         holder.binding.setEntity(list.get(position));
         holder.itemView.setOnClickListener((View v)-> {
-            bundle.putString("name",list.get(position).getName());
-            Loger.log("bundle "+list.get(position).getName());
+            bundle.putInt("id",list.get(position).getId());
             Navigation.findNavController(v).navigate(R.id.fragmentPosition, bundle);
         });
 

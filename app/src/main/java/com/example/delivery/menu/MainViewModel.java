@@ -6,28 +6,30 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.delivery.Loger;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.data.Param;
 
 import java.util.List;
 
-public class MenuViewModel extends AndroidViewModel {
+public class MainViewModel extends AndroidViewModel {
     MutableLiveData<List<MyEntity>> listLive=new MutableLiveData<>();
     MutableLiveData<List<Param>> section1Live=new MutableLiveData<>();
     MutableLiveData<List<Param>> section2Live=new MutableLiveData<>();
-    private MenuRepositoriy repo=new MenuRepositoriy();
+    private MainRepositoriy repo=new MainRepositoriy(section1Live,section2Live);
 
-    public MenuViewModel(@NonNull Application application) {
+    public MainViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public void getData(){
-        repo.requestData(listLive);
+    public void getAllData(){
+        data(); params();
     }
-    public void getSection1Draw(){
-        repo.requestParams1(section1Live);
+
+    public void data(){
+        repo.dataList(listLive);
     }
-    public void getSection2(){
-        repo.requestParam2(section2Live);
+    public void params(){
+        repo.params();
     }
 }
