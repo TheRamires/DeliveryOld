@@ -23,13 +23,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void getAllData(){
-        data(); params();
-    }
-
-    public void data(){
         repo.dataList();
-    }
-    public void params(){
         repo.params();
     }
 }

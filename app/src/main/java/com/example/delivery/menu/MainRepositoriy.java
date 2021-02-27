@@ -9,12 +9,9 @@ import com.example.delivery.data.TestData;
 import com.example.delivery.room.AppDatabase;
 import com.example.delivery.room.MyDao;
 import java.util.List;
-
-import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.example.delivery.utils.Constants.KEY1;
@@ -47,20 +44,6 @@ public class MainRepositoriy {
                             dataList();
                         }
                 });
-      /*
-        new Thread(() ->{
-            //main list of position
-            List<MyEntity> list=testData.data();
-            dao.saveList(list);
-
-            //sections
-            List<Param> params1 =testData.section1Drawables();
-            List<Param> params2 =testData.section2();
-
-            dao.saveParam(params1);
-            dao.saveParam(params2);
-
-        }).start();*/
     }
     public void requestParamsApi(){
         Single.merge(testData.section1Drawables(), testData.section2())
@@ -71,18 +54,6 @@ public class MainRepositoriy {
                     Loger.log("requestParamsApi) "+list.size());
                 });
     }
-
-
-    /*
-    public void loadDb(MutableLiveData<List<MyEntity>> listLive,
-                       MutableLiveData<List<Param>> section1Live,
-                       MutableLiveData<List<Param>> section2Live){
-        new Thread(()->{
-            listLive.postValue(dao.loadList());
-            section1Live.postValue(dao.loadParam(KEY1));
-            section2Live.postValue(dao.loadParam(KEY2));
-        }).start();
-    }*/
     public void dataList(){
         dao.loadList()
         .subscribeOn(Schedulers.io())

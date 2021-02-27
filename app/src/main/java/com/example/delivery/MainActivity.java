@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity {
         MapspointViewModel mapspointViewModel=new ViewModelProvider(this).get(MapspointViewModel.class);
         MainViewModel menuViewModel=new ViewModelProvider(this).get(MainViewModel.class);
         menuViewModel.getAllData();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         //====================================Permissions==================================
         permission= new Permission(mapspointViewModel, this, this);
         /* ...and GeoPoint  */
