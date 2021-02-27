@@ -3,13 +3,14 @@ package com.example.delivery.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 
 import static com.example.delivery.utils.Constants.KEY1;
 import static com.example.delivery.utils.Constants.KEY2;
 
 public class TestData {
-    public Single<List<MyEntity>> data(){
+    public Maybe<List<MyEntity>> data(){
         MyEntity ferrari1=new MyEntity(Brand.FERRARI.name(), "ferrari_512_tr_1991","512 TR 1991","Скорость: 309 км/ч. \nМощность: 428 л.с.\nРазгон до 100: 4.8 сек.",Class.SPORTCAR.name(),"13200000");
         MyEntity ferrari2=new MyEntity(Brand.FERRARI.name(), "ferrari_enzo_2010","Enzo Gemballa MIG-U1 2010","Скорость: 350 км/ч.\nМощность: 700 л.с.\nРазгон до 100: 3.5 сек.", Class.SPORTCAR.name(),"99000000");
         MyEntity ferrari3=new MyEntity(Brand.FERRARI.name(), "ferrari_f40_1987","F40 1987","Скорость: 324 км/ч.\nМощность: 478 л.с.\nРазгон до 100: 4.1 сек.", Class.SPORTCAR.name(),"101640000");
@@ -50,8 +51,8 @@ public class TestData {
         list.add(dodge1); list.add(dodge2); list.add(dodge3); list.add(dodge4);
         list.add(porsche1); list.add(porsche2);
 
-        Single<List<MyEntity>> single=Single.just(list);
-        return single;
+        Maybe<List<MyEntity>> maybe=Maybe.just(list);
+        return maybe;
     }
     public Single<List<Param>> section1Drawables(){
         String imgUrl1="ferrari";
