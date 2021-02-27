@@ -13,7 +13,10 @@ import java.util.List;
 @Dao
 public interface DaoFavorites {
     @Insert
-    void saveFavorites (MyEntity...myEntities);
+    long saveFavorites (MyEntity myEntity);
+
+    @Insert
+    void saveList (MyEntity... myEntity);
 
     @Query("SELECT * FROM myentity")
     List<MyEntity> getFavorites();

@@ -20,7 +20,7 @@ public class FavoritesViewModel extends ViewModel {
         repo.cheakPosition(entity);
     }
     public void deletePosition(MyEntity entity){
-        repo.delete(entity);
+        repo.delete(entity);/*
         new Thread(()-> {
             try {
                 Thread.sleep(100);
@@ -28,6 +28,6 @@ public class FavoritesViewModel extends ViewModel {
                 e.printStackTrace();
             }
             getListFavorites();
-        }).start();
+        }).start();*/
     }
 }
