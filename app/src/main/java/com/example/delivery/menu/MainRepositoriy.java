@@ -8,17 +8,13 @@ import com.example.delivery.data.Param;
 import com.example.delivery.data.TestData;
 import com.example.delivery.room.AppDatabase;
 import com.example.delivery.room.MyDao;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.example.delivery.utils.Constants.KEY1;
@@ -31,20 +27,25 @@ public class MainRepositoriy {
     private TestData testData=new TestData();
     MutableLiveData<List<Param>> section1Live;
     MutableLiveData<List<Param>> section2Live;
+    MutableLiveData<List<MyEntity>> listLive;
 
     public MainRepositoriy( MutableLiveData<List<Param>> section1Live,
-                            MutableLiveData<List<Param>> section2Live){
+                            MutableLiveData<List<Param>> section2Live,
+                            MutableLiveData<List<MyEntity>> listLive){
         this.section1Live=section1Live;
         this.section2Live=section2Live;
+        this.listLive=listLive;
     }
 
-    public void requestListApi(MutableLiveData<List<MyEntity>> listLive){
+    private void requestListApi(){
         testData.data()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe((@NonNull List<MyEntity> myEntities)->{
-                        listLive.postValue(myEntities);
                         long[] isSave=dao.saveList(myEntities);
+                        if (isSave.length!=0){
+                            dataList();
+                        }
                 });
       /*
         new Thread(() ->{
@@ -82,13 +83,13 @@ public class MainRepositoriy {
             section2Live.postValue(dao.loadParam(KEY2));
         }).start();
     }*/
-    public void dataList(MutableLiveData<List<MyEntity>> listLive){
+    public void dataList(){
         dao.loadList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe((@NonNull List<MyEntity> myEntities)->{
             if (myEntities.size()==0) {
-                requestListApi(listLive);
+                requestListApi();
             } else listLive.setValue(myEntities);
         });
     }

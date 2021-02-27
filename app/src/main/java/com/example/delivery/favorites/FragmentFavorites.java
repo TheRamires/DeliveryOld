@@ -38,6 +38,8 @@ public class FragmentFavorites extends Fragment {
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
+        viewModel.getFavorites();
+
         RecyclerView recyclerView=binding.recycler;
         viewModel.favoritesLive.observe(getViewLifecycleOwner(), (List<MyEntity> list)-> {
                 RecyclerView.Adapter adapter=new RecyclerAdapterList(list,true,viewModel);

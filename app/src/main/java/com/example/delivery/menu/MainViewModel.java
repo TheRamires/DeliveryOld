@@ -16,7 +16,7 @@ public class MainViewModel extends AndroidViewModel {
     MutableLiveData<List<MyEntity>> listLive=new MutableLiveData<>();
     MutableLiveData<List<Param>> section1Live=new MutableLiveData<>();
     MutableLiveData<List<Param>> section2Live=new MutableLiveData<>();
-    private MainRepositoriy repo=new MainRepositoriy(section1Live,section2Live);
+    private MainRepositoriy repo=new MainRepositoriy(section1Live,section2Live, listLive);
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -27,7 +27,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void data(){
-        repo.dataList(listLive);
+        repo.dataList();
     }
     public void params(){
         repo.params();

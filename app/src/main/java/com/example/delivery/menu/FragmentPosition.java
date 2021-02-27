@@ -37,6 +37,7 @@ public class FragmentPosition extends Fragment {
         View view=binding.getRoot();
         PositionViewModel viewModel=new ViewModelProvider(requireActivity()).get(PositionViewModel.class);
         FavoritesViewModel favoritesViewModel=new ViewModelProvider(this).get(FavoritesViewModel.class);
+        int idPosition=getArguments().getInt("id");
 
         toolbar= (Toolbar) getActivity().findViewById(R.id.toolbar_up);
         menu=toolbar.getMenu();
@@ -44,14 +45,11 @@ public class FragmentPosition extends Fragment {
         requireActivity().getMenuInflater().inflate(R.menu.menu_position,menu);
 
         menu.getItem(0).setOnMenuItemClickListener((MenuItem item)-> {
-            Loger.log("Add favorite "+entity.getName());
-            if (entity!=null) {
-                //favoritesViewModel.cheakPosition(entity);
-            }
+                Loger.log("setOnMenuItemClickListener "+idPosition);
+                favoritesViewModel.onePosition(idPosition);
             return onOptionsItemSelected(item);
         });
        // int position=getArguments().getInt("position");
-        int idPosition=getArguments().getInt("id");
         viewModel.getPosition(idPosition);
         viewModel.positionLive.observe(getViewLifecycleOwner(), new Observer<MyEntity>() {
             @Override

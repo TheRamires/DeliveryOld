@@ -1,6 +1,7 @@
 package com.example.delivery.menu.adapters;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,8 @@ public class RecyclerAdapterList extends RecyclerView.Adapter<RecyclerAdapterLis
         if (crosVisible){
             holder.binding.setIsVisible(true);
             holder.binding.cros.setOnClickListener((View v) ->{
-                //favoritesViewModel.deletePosition(list.get(position));
+                Loger.log("onClick id "+list.get(position).getId()+" name "+list.get(position).getName());
+                favoritesViewModel.deleteOne(list.get(position).getId());
             });
         }
         holder.binding.setEntity(list.get(position));
