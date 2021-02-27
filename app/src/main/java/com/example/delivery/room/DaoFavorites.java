@@ -10,6 +10,8 @@ import com.example.delivery.data.MyEntity;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 @Dao
 public interface DaoFavorites {
     @Insert
@@ -22,7 +24,7 @@ public interface DaoFavorites {
     List<MyEntity> getFavorites();
 
     @Delete
-    int deleteFavorite(MyEntity myEntity);
+    Single<Integer> deleteFavorite(MyEntity myEntity);
 
     @Query("SELECT * FROM myentity WHERE name=:name")
     MyEntity cheakPosition(String name);
