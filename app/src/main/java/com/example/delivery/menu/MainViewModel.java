@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.delivery.Loger;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.data.Param;
 

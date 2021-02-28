@@ -8,7 +8,11 @@ import com.example.delivery.data.Param;
 import com.example.delivery.data.TestData;
 import com.example.delivery.room.AppDatabase;
 import com.example.delivery.room.MyDao;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -33,35 +37,12 @@ public class MainRepositoriy {
         this.section2Live=section2Live;
         this.listLive=listLive;
     }
-
-    private void requestListApi(){
-        testData.data()
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe((@NonNull List<MyEntity> myEntities)->{
-                        long[] isSave=dao.saveList(myEntities);
-                        if (isSave.length!=0){
-                            dataList();
-                        }
-                });
-    }
-    public void requestParamsApi(){
-        Single.merge(testData.section1Drawables(), testData.section2())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull List<Param> list) ->{
-                    setliveParams(list);
-                    Loger.log("requestParamsApi) "+list.size());
-                });
-    }
     public void dataList(){
         dao.loadList()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe((@NonNull List<MyEntity> myEntities)->{
-            if (myEntities.size()==0) {
-                requestListApi();
-            } else listLive.setValue(myEntities);
+            listLive.setValue(myEntities);
         });
     }
     public void params(){
@@ -69,21 +50,23 @@ public class MainRepositoriy {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull List<Param> list) ->{
-                        if (list.size()==0){
-                            Loger.log("list.size()==0");
-                            requestParamsApi();
-                        }else {
-                            Loger.log("sectionLive.setValue(list)");
-                            setliveParams(list);
-                        }
+                    setliveParams(list);
                 });
-
     }
     private void setliveParams(List<Param> list){
-        if (list.get(0).getKeys().equals(KEY1)){
-            section1Live.postValue(list);
-        } else if (list.get(0).getKeys().equals(KEY2)){
-            section2Live.postValue(list);
+        List<Param> forSection1=new ArrayList<>();
+        List<Param> forSection2=new ArrayList<>();
+        for (Param entity: list){
+            switch (entity.getKeys()){
+                case KEY1:
+                    forSection1.add(entity);
+                    break;
+                case KEY2:
+                    forSection2.add(entity);
+                    break;
+            }
         }
+        section1Live.setValue(forSection1);
+        section2Live.setValue(forSection2);
     }
 }

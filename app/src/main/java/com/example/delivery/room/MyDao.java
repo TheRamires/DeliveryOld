@@ -27,7 +27,7 @@ public interface MyDao {
     Maybe<MyEntity> getPosition(int id);
 
     @Insert
-    void saveParams (List<Param> list);
+    long[] saveParams (List<Param> list);
 
     @Query("SELECT * FROM Param")
     Maybe<List<Param>> loadParam ( );
