@@ -17,7 +17,7 @@ public class LoadingViewModel extends ViewModel {
     private MutableLiveData<Boolean> listIsLoaded=new MutableLiveData<>(false);
     private MutableLiveData<Boolean> paramsIsLoaded=new MutableLiveData<>(false);
     public MediatorLiveData<Boolean> isLoaded=new MediatorLiveData<>();
-    private LoadingRepositoriy repo=new LoadingRepositoriy(listIsLoaded, paramsIsLoaded);
+    private LoadingRepositoriy repo=new LoadingRepositoriy();
 
     public void isLoaded(){
         isLoaded.addSource(listIsLoaded, (Boolean aBoolean)-> {

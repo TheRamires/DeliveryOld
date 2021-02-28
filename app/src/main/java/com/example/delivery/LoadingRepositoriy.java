@@ -19,18 +19,9 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class LoadingRepositoriy {
-    private MutableLiveData<Boolean> listIsLoaded;
-    private MutableLiveData<Boolean> paramsIsLoaded;
     private AppDatabase db= App.getInstance().getDatabase();
     public DaoBase dao=db.daoBase();
     private TestData testData=new TestData();
-
-    public LoadingRepositoriy(MutableLiveData<Boolean> listIsLoaded,
-                              MutableLiveData<Boolean> paramsIsLoaded){
-        this.listIsLoaded=listIsLoaded;
-        this.paramsIsLoaded=paramsIsLoaded;
-    }
-
 
     public Maybe<List<MyEntity>> dataList(){
         return dao.loadList()
