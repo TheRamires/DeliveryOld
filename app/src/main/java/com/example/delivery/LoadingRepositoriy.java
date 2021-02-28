@@ -7,13 +7,12 @@ import com.example.delivery.data.Param;
 import com.example.delivery.data.TestData;
 import com.example.delivery.room.AppDatabase;
 import com.example.delivery.room.DaoBase;
-import com.example.delivery.room.DaoMenu;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -33,50 +32,35 @@ public class LoadingRepositoriy {
     }
 
 
-    public void dataList(){
-        dao.loadList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull List<MyEntity> myEntities)->{
-                    if (myEntities.size()==0) {
-                        requestListApi();
-                    } else listIsLoaded.postValue(true);
-                });
+    public Maybe<List<MyEntity>> dataList(){
+        return dao.loadList()
+                .subscribeOn(Schedulers.io());
     }
 
-    private void requestListApi(){
-        testData.data()
+    public Maybe<long[]> requestListApi(){
+        return  testData.data()
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe((@NonNull List<MyEntity> myEntities)->{
-                    long[] isSave=dao.saveList(myEntities);
-                    if (isSave.length!=0){
-                        listIsLoaded.postValue(true);
+                .map(new Function<List<MyEntity>, long[]>() {
+                    @NonNull
+                    @Override
+                    public long[] apply(@NonNull List<MyEntity> entities) throws Exception {
+                        return dao.saveList(entities);
+
                     }
                 });
     }
-    public void params(){
-        dao.loadParam()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@NonNull List<Param> list) ->{
-                    if (list.size()==0){
-                        Loger.log("list.size()==0");
-                        requestParamsApi();
-                    }else {
-                        Loger.log("sectionLive.setValue(list)");
-                        paramsIsLoaded.postValue(true);
-                    }
-                });
+    public Maybe<List<Param>> params(){
+        return dao.loadParam()
+                .subscribeOn(Schedulers.io());
     }
-    public void requestParamsApi(){
-        Single.merge(testData.section1Drawables(), testData.section2())
+    public Flowable<long[]> requestParamsApi(){
+        return Single.merge(testData.section1Drawables(), testData.section2())
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe((@NonNull List<Param> list) ->{
-                    long [] saved=dao.saveParams(list);
-                    if (saved.length!=0){
-                        paramsIsLoaded.postValue(true);
+                .map(new Function<List<Param>, long[]>() {
+                    @NonNull
+                    @Override
+                    public long[] apply(@NonNull List<Param> list) throws Exception {
+                        return dao.saveParams(list);
                     }
                 });
     }
