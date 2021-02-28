@@ -16,21 +16,9 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 
 @Dao
-public interface MyDao {
-    @Insert
-    long[] saveList (List<MyEntity> list);
-
-    @Query("SELECT * FROM myentity")
-    Maybe<List<MyEntity>> loadList ();
-
+public interface DaoMenu {
     @Query("SELECT *FROM myentity WHERE id=:id")
     Maybe<MyEntity> getPosition(int id);
-
-    @Insert
-    long[] saveParams (List<Param> list);
-
-    @Query("SELECT * FROM Param")
-    Maybe<List<Param>> loadParam ( );
 
 
     @Query("SELECT * FROM myentity INNER JOIN favorites WHERE myentity.id=favorites.entityId ")

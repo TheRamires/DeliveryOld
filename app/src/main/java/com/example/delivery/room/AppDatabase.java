@@ -8,7 +8,8 @@ import com.example.delivery.data.Favorites;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.data.Param;
 
-@Database(entities = {MyEntity.class, Param.class, Favorites.class}, version = 1)
+@Database(entities = {MyEntity.class, Param.class, Favorites.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract MyDao daoFavorites ();
+    public abstract DaoMenu daoMenu ();
+    public abstract DaoBase daoBase ();
 }

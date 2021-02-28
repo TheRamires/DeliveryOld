@@ -6,7 +6,8 @@ import com.example.delivery.data.MyEntity;
 import com.example.delivery.data.Param;
 import com.example.delivery.data.TestData;
 import com.example.delivery.room.AppDatabase;
-import com.example.delivery.room.MyDao;
+import com.example.delivery.room.DaoBase;
+import com.example.delivery.room.DaoMenu;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class LoadingRepositoriy {
     private MutableLiveData<Boolean> listIsLoaded;
     private MutableLiveData<Boolean> paramsIsLoaded;
     private AppDatabase db= App.getInstance().getDatabase();
-    public MyDao dao=db.daoFavorites();
+    public DaoBase dao=db.daoBase();
     private TestData testData=new TestData();
 
     public LoadingRepositoriy(MutableLiveData<Boolean> listIsLoaded,

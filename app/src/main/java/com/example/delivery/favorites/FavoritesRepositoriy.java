@@ -7,12 +7,11 @@ import com.example.delivery.Loger;
 import com.example.delivery.data.Favorites;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.room.AppDatabase;
-import com.example.delivery.room.MyDao;
+import com.example.delivery.room.DaoMenu;
 
 import java.util.List;
 
 import io.reactivex.MaybeObserver;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -21,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FavoritesRepositoriy {
     private AppDatabase db= App.getInstance().getDatabase();
-    public MyDao dao=db.daoFavorites();
+    public DaoMenu dao=db.daoMenu();
     private MutableLiveData<List<MyEntity>> favoritesLive;
 
     public FavoritesRepositoriy(MutableLiveData<List<MyEntity>> favoritesLive){
