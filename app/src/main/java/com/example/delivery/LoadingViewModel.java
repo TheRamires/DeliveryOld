@@ -30,4 +30,10 @@ public class LoadingViewModel extends ViewModel {
         repo.dataList();
         repo.params();
     }
+    private void cheakDb(){
+
+    }
+    private void request(){
+        
+    }
 }
