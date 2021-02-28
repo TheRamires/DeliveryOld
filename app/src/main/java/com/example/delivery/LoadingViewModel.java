@@ -2,7 +2,6 @@ package com.example.delivery;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 public class LoadingViewModel extends ViewModel {
@@ -11,11 +10,6 @@ public class LoadingViewModel extends ViewModel {
     public MediatorLiveData<Boolean> isLoaded=new MediatorLiveData<>();
     private LoadingRepositoriy repo=new LoadingRepositoriy(listIsLoaded, paramsIsLoaded);
 
-    public void getAllData(){
-        isLoaded();
-        repo.dataList();
-        repo.params();
-    }
     public void isLoaded(){
         isLoaded.addSource(listIsLoaded, (Boolean aBoolean)-> {
             cheakBooleans();
@@ -29,5 +23,11 @@ public class LoadingViewModel extends ViewModel {
         if (listIsLoaded.getValue()==true & paramsIsLoaded.getValue()==true){
             isLoaded.setValue(true);
         }
+    }
+
+    public void getAllData(){
+        isLoaded();
+        repo.dataList();
+        repo.params();
     }
 }

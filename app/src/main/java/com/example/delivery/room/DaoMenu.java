@@ -28,7 +28,7 @@ public interface DaoMenu {
     Maybe<List<Favorites>> getlistFavorites();
 
     @Insert
-    long saveFavoriteOne(Favorites entityId);
+    Single<Long> saveFavoriteOne(Favorites entityId);
 
     @Delete
     int deleteFavoriteOne(Favorites favorites);

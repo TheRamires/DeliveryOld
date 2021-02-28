@@ -11,9 +11,11 @@ import com.example.delivery.room.DaoMenu;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -30,7 +32,7 @@ public class LoadingRepositoriy {
         this.paramsIsLoaded=paramsIsLoaded;
     }
 
-    public void dataList(){
+    public Maybe<List<MyEntity>> dataList(){
         dao.loadList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -46,13 +48,22 @@ public class LoadingRepositoriy {
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe((@NonNull List<MyEntity> myEntities)->{
-                    long[] isSave=dao.saveList(myEntities);
-                    if (isSave.length!=0){
+                    saveList(myEntities);
+                });
+    }
+    private void saveList(List<MyEntity> myEntities){
+        dao.saveList(myEntities).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe((@NonNull long[] longs) -> {
+                    if (longs.length!=0){
                         listIsLoaded.postValue(true);
                     }
                 });
+
     }
-    public void params(){
+
+    
+    public Maybe<List<Param>> params(){
         dao.loadParam()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

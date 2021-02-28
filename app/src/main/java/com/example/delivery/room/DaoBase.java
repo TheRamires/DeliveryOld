@@ -10,17 +10,18 @@ import com.example.delivery.data.Param;
 import java.util.List;
 
 import io.reactivex.Maybe;
+import io.reactivex.Single;
 
 @Dao
 public interface DaoBase {
     @Insert
-    long[] saveList(List<MyEntity> list);
+    Single<long[]> saveList(List<MyEntity> list);
 
     @Query("SELECT * FROM myentity")
     Maybe<List<MyEntity>> loadList();
 
     @Insert
-    long[] saveParams(List<Param> list);
+    Single<long[]> saveParams(List<Param> list);
 
     @Query("SELECT * FROM Param")
     Maybe<List<Param>> loadParam();
