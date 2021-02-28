@@ -51,12 +51,9 @@ public class LoadingViewModel extends ViewModel {
     private void requestList(){
         repo.requestListApi()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<long[]>() {
-                    @Override
-                    public void accept(@NonNull long[] isSaved) throws Exception {
+                .subscribe((@NonNull long[] isSaved)-> {
                         if (isSaved.length!=0){
                             listIsLoaded.postValue(true);
-                        }
                     }
                 });
     }

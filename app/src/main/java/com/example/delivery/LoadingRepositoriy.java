@@ -40,13 +40,8 @@ public class LoadingRepositoriy {
     public Maybe<long[]> requestListApi(){
         return  testData.data()
                 .subscribeOn(Schedulers.io())
-                .map(new Function<List<MyEntity>, long[]>() {
-                    @NonNull
-                    @Override
-                    public long[] apply(@NonNull List<MyEntity> entities) throws Exception {
+                .map((@NonNull List<MyEntity> entities) -> {
                         return dao.saveList(entities);
-
-                    }
                 });
     }
     public Maybe<List<Param>> params(){
@@ -56,12 +51,8 @@ public class LoadingRepositoriy {
     public Flowable<long[]> requestParamsApi(){
         return Single.merge(testData.section1Drawables(), testData.section2())
                 .subscribeOn(Schedulers.io())
-                .map(new Function<List<Param>, long[]>() {
-                    @NonNull
-                    @Override
-                    public long[] apply(@NonNull List<Param> list) throws Exception {
+                .map((@NonNull List<Param> list)->{
                         return dao.saveParams(list);
-                    }
                 });
     }
 }

@@ -1,14 +1,10 @@
-package com.example.delivery.menu.adapters;
+package com.example.delivery.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
-
-import com.example.delivery.App;
-import com.example.delivery.Loger;
 
 
 public class ImageBindingAdapter {

@@ -19,8 +19,8 @@ import com.example.delivery.Loger;
 import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentMenuListBinding;
-import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
-import com.example.delivery.menu.adapters.RecyclerAdapterList;
+import com.example.delivery.adapters.RecyclerSectionItemDecoration;
+import com.example.delivery.adapters.RecyclerAdapterList;
 import java.util.List;
 
 import static com.example.delivery.utils.Constants.KEY1;

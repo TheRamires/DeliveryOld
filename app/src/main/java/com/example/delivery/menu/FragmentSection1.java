@@ -11,16 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.delivery.Loger;
 import com.example.delivery.data.Param;
 import com.example.delivery.databinding.FragmentSection1Binding;
-import com.example.delivery.menu.adapters.RecyclerAdapterSection;
+import com.example.delivery.adapters.RecyclerAdapterSection;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import static com.example.delivery.utils.Constants.KEY1;
 
 public class FragmentSection1 extends Fragment {
     @Override

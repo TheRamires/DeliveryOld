@@ -1,14 +1,12 @@
-package com.example.delivery.menu.adapters;
+package com.example.delivery.adapters;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +15,6 @@ import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.ItemListBinding;
 import com.example.delivery.favorites.FavoritesViewModel;
-import com.example.delivery.favorites.FragmentFavorites;
 
 import java.util.List;
 

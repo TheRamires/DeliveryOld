@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.delivery.menu.adapters.ImageBindingAdapter;
+import com.example.delivery.adapters.ImageBindingAdapter;
 import com.example.delivery.databinding.ActivityMainBinding;
 import com.example.delivery.mapspoint.MapspointViewModel;
 import com.example.delivery.menu.MainViewModel;

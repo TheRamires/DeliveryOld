@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.delivery.data.Param;
 import com.example.delivery.databinding.FragmentSection2Binding;
-import com.example.delivery.menu.adapters.RecyclerAdapterSection;
+import com.example.delivery.adapters.RecyclerAdapterSection;
 
 import java.util.List;
 
