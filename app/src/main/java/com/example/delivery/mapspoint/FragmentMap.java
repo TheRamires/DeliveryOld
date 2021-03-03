@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,12 @@ public class FragmentMap extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
     MapspointViewModel viewModel;
     MutableLiveData<SupportMapFragment> initMapTrue=new MutableLiveData<>();
+    @Override
+    public void onResume() {
+        super.onResume();
+        ViewPager2 viewPager=requireActivity().findViewById(R.id.pager);
+        viewPager.setUserInputEnabled(false);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
