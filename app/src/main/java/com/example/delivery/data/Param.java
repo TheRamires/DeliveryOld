@@ -1,22 +1,31 @@
 package com.example.delivery.data;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Param {
-    private String key;
+    @PrimaryKey (autoGenerate = true)
+    private int id;
+    private String keys;
     private String name;
     private String img;
 
-    public Param(String key, String name, String img){
-        this.key=key;
+    public Param(String keys, String name, String img){
+        this.keys=keys;
         this.name=name;
         this.img=img;
     }
+    public void setId(int id) {this.id=id;}
+    public int getId(){return  id;}
 
-    public void setKey(String key){
-        this.key=key;
+    public void setKeys(String keys){
+        this.keys=keys;
     }
-    public String getKey (){
-        return key;
+    public String getKeys(){
+        return keys;
     }
+
     public void setName(String name){
         this.name=name;
     }

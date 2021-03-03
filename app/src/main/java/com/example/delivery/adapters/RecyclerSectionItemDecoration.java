@@ -1,4 +1,4 @@
-package com.example.delivery.menu.adapters;
+package com.example.delivery.adapters;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

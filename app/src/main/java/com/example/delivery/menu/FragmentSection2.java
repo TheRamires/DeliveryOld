@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.delivery.data.Param;
 import com.example.delivery.databinding.FragmentSection2Binding;
-import com.example.delivery.menu.adapters.RecyclerAdapterSection;
+import com.example.delivery.adapters.RecyclerAdapterSection;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class FragmentSection2 extends Fragment {
         FragmentSection2Binding binding=FragmentSection2Binding.inflate(inflater);
         binding.setFragment(this);
         View view=binding.getRoot();
-        MenuViewModel viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        MainViewModel viewModel=new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         RecyclerView recyclerView=binding.recycler;
-        viewModel.getSection2();
+        //viewModel.getSection2();
 
         viewModel.section2Live.observe(getViewLifecycleOwner(), new Observer<List<Param>>() {
             @Override

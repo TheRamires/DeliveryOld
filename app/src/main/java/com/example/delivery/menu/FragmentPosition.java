@@ -2,9 +2,9 @@ package com.example.delivery.menu;
 
 import android.os.Bundle;
 
-import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 
@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.delivery.Loger;
 import com.example.delivery.R;
@@ -35,10 +34,10 @@ public class FragmentPosition extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentPositionBinding binding=FragmentPositionBinding.inflate(inflater);
-        binding.setFragment(this);
         View view=binding.getRoot();
-        MenuViewModel menuViewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        PositionViewModel viewModel=new ViewModelProvider(requireActivity()).get(PositionViewModel.class);
         FavoritesViewModel favoritesViewModel=new ViewModelProvider(this).get(FavoritesViewModel.class);
+        int idPosition=getArguments().getInt("id");
 
         toolbar= (Toolbar) getActivity().findViewById(R.id.toolbar_up);
         menu=toolbar.getMenu();
@@ -46,18 +45,21 @@ public class FragmentPosition extends Fragment {
         requireActivity().getMenuInflater().inflate(R.menu.menu_position,menu);
 
         menu.getItem(0).setOnMenuItemClickListener((MenuItem item)-> {
-            Loger.log("Add favorite "+entity.getName());
-            if (entity!=null) {
-                favoritesViewModel.cheakPosition(entity);
-            }
+                Loger.log("setOnMenuItemClickListener "+idPosition);
+                favoritesViewModel.onePosition(idPosition);
             return onOptionsItemSelected(item);
         });
-
        // int position=getArguments().getInt("position");
-        String name=getArguments().getString("name");
-        Loger.log("name "+name);
-        List<MyEntity> list=menuViewModel.listLive.getValue();
-        //entity=list.get(position);
+        viewModel.getPosition(idPosition);
+        viewModel.positionLive.observe(getViewLifecycleOwner(), new Observer<MyEntity>() {
+            @Override
+            public void onChanged(MyEntity myEntity) {
+                binding.setEntity(myEntity);
+                //entity=myEntity;
+            }
+        });
+
+        /*List<MyEntity> list=menuViewModel.listLive.getValue();
 
         Iterator iterator=list.iterator();
         MyEntity entityTemp;
@@ -69,7 +71,7 @@ public class FragmentPosition extends Fragment {
                 break;
             }
         }
-        entityTemp=null;
+        entityTemp=null;*/
 
         return  view;
     }

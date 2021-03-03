@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
-import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
+import com.example.delivery.adapters.RecyclerSectionItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Collections;

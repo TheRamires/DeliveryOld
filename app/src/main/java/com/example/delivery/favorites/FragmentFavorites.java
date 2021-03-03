@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentFavoritesBinding;
-import com.example.delivery.menu.adapters.RecyclerAdapterList;
+import com.example.delivery.adapters.RecyclerAdapterList;
 
 import java.util.List;
 
@@ -38,7 +37,8 @@ public class FragmentFavorites extends Fragment {
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
-        viewModel.getListFavorites();
+        viewModel.getFavorites();
+
         RecyclerView recyclerView=binding.recycler;
         viewModel.favoritesLive.observe(getViewLifecycleOwner(), (List<MyEntity> list)-> {
                 RecyclerView.Adapter adapter=new RecyclerAdapterList(list,true,viewModel);

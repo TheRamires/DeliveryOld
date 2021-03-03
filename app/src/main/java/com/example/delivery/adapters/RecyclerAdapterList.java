@@ -1,4 +1,4 @@
-package com.example.delivery.menu.adapters;
+package com.example.delivery.adapters;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,6 @@ import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.ItemListBinding;
 import com.example.delivery.favorites.FavoritesViewModel;
-import com.example.delivery.favorites.FragmentFavorites;
 
 import java.util.List;
 
@@ -49,13 +47,13 @@ public class RecyclerAdapterList extends RecyclerView.Adapter<RecyclerAdapterLis
         if (crosVisible){
             holder.binding.setIsVisible(true);
             holder.binding.cros.setOnClickListener((View v) ->{
-                favoritesViewModel.deletePosition(list.get(position));
+                Loger.log("onClick id "+list.get(position).getId()+" name "+list.get(position).getName());
+                favoritesViewModel.deleteOne(list.get(position).getId());
             });
         }
         holder.binding.setEntity(list.get(position));
         holder.itemView.setOnClickListener((View v)-> {
-            bundle.putString("name",list.get(position).getName());
-            Loger.log("bundle "+list.get(position).getName());
+            bundle.putInt("id",list.get(position).getId());
             Navigation.findNavController(v).navigate(R.id.fragmentPosition, bundle);
         });
 

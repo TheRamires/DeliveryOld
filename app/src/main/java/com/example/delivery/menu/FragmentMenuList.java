@@ -19,8 +19,8 @@ import com.example.delivery.Loger;
 import com.example.delivery.R;
 import com.example.delivery.data.MyEntity;
 import com.example.delivery.databinding.FragmentMenuListBinding;
-import com.example.delivery.menu.adapters.RecyclerSectionItemDecoration;
-import com.example.delivery.menu.adapters.RecyclerAdapterList;
+import com.example.delivery.adapters.RecyclerSectionItemDecoration;
+import com.example.delivery.adapters.RecyclerAdapterList;
 import java.util.List;
 
 import static com.example.delivery.utils.Constants.KEY1;
@@ -31,13 +31,13 @@ public class FragmentMenuList extends Fragment {
     private Toolbar toolbar;
     private Button title;
     private NavController navController;
-    private MenuViewModel viewModel;
+    private MainViewModel viewModel;
     private SectionsViewModel viewModelSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        viewModel=new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        viewModel=new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         viewModelSection=new ViewModelProvider(requireActivity()).get(SectionsViewModel.class);
 
         binding=FragmentMenuListBinding.inflate(inflater);
@@ -46,9 +46,11 @@ public class FragmentMenuList extends Fragment {
         navController= Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         addDinamicView();
 
-        viewModel.getData();
+        //viewModel.getData();
 
         viewModel.listLive.observe(getViewLifecycleOwner(), (List<MyEntity> entities) ->{
+
+            Loger.log("FragmentMenuList. observe. entities");
 
             //проверяет bundle переданный из RecyclerAdapterSection
             //если его нет, то действие по -умолчанию ->

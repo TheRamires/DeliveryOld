@@ -1,4 +1,4 @@
-package com.example.delivery.menu.adapters;
+package com.example.delivery.adapters;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,11 +38,11 @@ public class RecyclerAdapterSection extends RecyclerView.Adapter<RecyclerAdapter
         holder.binding.setParam(list.get(position));
         Bundle bundle=new Bundle();
         bundle.putString("value",list.get(position).getName());
-        bundle.putString("key",list.get(position).getKey());
+        bundle.putString("key",list.get(position).getKeys());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Loger.log("••••7•"+list.get(position).getKey()+" "+list.get(position).getName()+" "+list.get(position).getImg() );
+                Loger.log("••••7•"+list.get(position).getKeys()+" "+list.get(position).getName()+" "+list.get(position).getImg() );
                 Navigation.findNavController(v).navigate(R.id.fragmentMenuList,bundle);
             }
         });
