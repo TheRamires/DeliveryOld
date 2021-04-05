@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="entity"
+            type="com.example.deliverykotlin.data.MyEntity" />
+    </data>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:visibility="@{entity.counterVisible ? View.INVISIBLE : View.VISIBLE}"
+        android:background="@drawable/button_price_empty"
+        android:id="@+id/price_button"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="@{entity.price}"
+        />
+
+    <LinearLayout
+        android:visibility="@{entity.counterVisible ? View.VISIBLE : View.INVISIBLE, default=gone}"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:clickable="true"
+            android:id="@+id/minus_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_clickness_minus">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/icon_minus"/>
+        </FrameLayout>
+        <TextView
+            android:gravity="center"
+            android:text="@{String.valueOf(entity.counter)}"
+            android:background="@drawable/counter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <FrameLayout
+            android:clickable="true"
+            android:id="@+id/plus_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/button_clickness_plus">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/icon_plus"/>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
+</layout>

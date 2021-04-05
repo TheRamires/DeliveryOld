@@ -3,19 +3,23 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.delivery.menu.FragmentSection2" />
+            type="com.example.deliverykotlin.components.menu.Section2Fragment" />
     </data>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".menu.FragmentSection2"
-    android:background="#06675E">
-
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler"/>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".components.menu.Section1Fragment"
+        android:background="@color/teal_700">
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:orientation="vertical"
+            app:spanCount="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
 </layout>

@@ -50,7 +50,7 @@ public class SectionsViewModel extends AndroidViewModel {
                                 return position == 0
                                         || list.get(position)
                                         //.getLastName()
-                                        .getBrand()
+                                        .getBrand().toString()
                                         .charAt(0) != list.get(position - 1)
                                         //.getLastName()
                                         .getBrand()

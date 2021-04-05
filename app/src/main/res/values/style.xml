@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="LoadingTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/loading_background</item>
+        <item name="android:windowBackground">@drawable/ic_launcher_background</item>
     </style>
 </resources>

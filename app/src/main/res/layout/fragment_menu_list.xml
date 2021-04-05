@@ -3,21 +3,21 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.delivery.menu.FragmentMenuList" />
+            type="com.example.deliverykotlin.components.menu.MenuListFragment" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.FragmentMenuList"
-    android:orientation="vertical"
-    android:background="#D8BBFB"
-    >
+    tools:context=".components.menu.MenuListFragment">
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
-
-</LinearLayout>
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+</FrameLayout>
 </layout>

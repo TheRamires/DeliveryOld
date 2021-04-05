@@ -17,7 +17,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-
 public class LoadingRepositoriy {
     private AppDatabase db= App.getInstance().getDatabase();
     public DaoBase dao=db.daoBase();

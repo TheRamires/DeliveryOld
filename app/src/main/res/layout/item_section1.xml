@@ -6,30 +6,34 @@
             type="android.view.View.OnClickListener" />
         <variable
             name="param"
-            type="com.example.delivery.data.Param" />
+            type="com.example.deliverykotlin.data.Brand" />
     </data>
-<LinearLayout
-    android:clickable="true"
-    android:orientation="vertical"
-    android:paddingVertical="5dp"
-    android:paddingHorizontal="5dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
-    <ImageView
-        android:paddingVertical="2dp"
-        android:id="@+id/image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:imageUrl="@{param.img}"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
+    <LinearLayout
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="5dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
 
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:clickable="false"
+            android:hint="BRAND"
+            android:text="@{param.name}"
+            android:paddingVertical="2dp"
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_launcher_background"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+    </LinearLayout>
 </layout>

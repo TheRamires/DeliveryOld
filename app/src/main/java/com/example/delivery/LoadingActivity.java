@@ -41,6 +41,7 @@ public class LoadingActivity extends AppCompatActivity {
             }
         });
 
+
     }
     void  remove (){
         loadingViewModel.isLoaded.removeObservers(this);
